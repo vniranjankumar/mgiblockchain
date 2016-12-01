@@ -1,0 +1,18 @@
+{
+  "jsonrpc": "2.0",
+  "method": "deploy",
+  "params": {
+    "type": 1,
+    "chaincodeID": {
+      "path": "http://gopkg.in/vniranjankumar/mgiblockchain.v0/GoChainCode/src/moneygram"
+    },
+    "ctorMsg": {
+      "function": "init",
+      "args": [
+        "Hello"
+      ]
+    },
+    "secureContext": "user_type1_0"
+  },
+  "id": 0
+}
