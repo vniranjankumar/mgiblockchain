@@ -5,6 +5,9 @@ package com.database;
 
 import java.util.ArrayList;
 
+import com.blockchain.BlockChainImpl;
+import com.blockchain.BlockChainService;
+
 /**
  * @author Niranjan
  *
@@ -26,14 +29,20 @@ public class DataHelper {
 		return null;
 	}
 	
+	public static ArrayList<TransactionLedgerDO> getTranData(String role){
+		
+		BlockChainService chainService = new BlockChainImpl();
+		return chainService.queryTranData();
+	}
+	
 	public static ArrayList<TransactionLedgerDO> mockTranData(String role){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		TransactionLedgerDO data1 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-26-2016 5:00PM","******2354");
-		TransactionLedgerDO data2 = new TransactionLedgerDO("Sriram","USA","Pradeep","Mexico","50","11-27-2016 7:00PM","******2354");
-		TransactionLedgerDO data3 = new TransactionLedgerDO("Niranjan","USA","Sankar","USA","100","11-25-2016 3:00PM","");
-		TransactionLedgerDO data4 = new TransactionLedgerDO("Sankar","USA","Praveen","India","200","11-23-2016 1:00PM","******2354");
-		TransactionLedgerDO data5 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-23-2016 2:00PM","");
+		TransactionLedgerDO data1 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-26-2016 5:00PM","******2354","Deposited");
+		TransactionLedgerDO data2 = new TransactionLedgerDO("Sriram","USA","Pradeep","Mexico","50","11-27-2016 7:00PM","******2354","Deposited");
+		TransactionLedgerDO data3 = new TransactionLedgerDO("Niranjan","USA","Sankar","USA","100","11-25-2016 3:00PM","","Sent");
+		TransactionLedgerDO data4 = new TransactionLedgerDO("Sankar","USA","Praveen","India","200","11-23-2016 1:00PM","******2354","Clearance Pending");
+		TransactionLedgerDO data5 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-23-2016 2:00PM","","Received");
 		
 		if(role.equalsIgnoreCase("mgiauditor")){
 			dataList.add(data1);dataList.add(data2);dataList.add(data3);dataList.add(data4);dataList.add(data5);

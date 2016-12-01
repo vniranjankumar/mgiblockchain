@@ -48,8 +48,8 @@ public class AuditAction implements Action, SessionAware{
     		}
     	}
     	if(role != null && !role.isEmpty()) {
-    		transactionList = DataHelper.mockTranData(role);
-    		//DataHelper.getTranData(role);
+    		//transactionList = DataHelper.mockTranData(role);
+    		transactionList = DataHelper.getTranData(role);
     	}
         return "SUCCESS";
     }
