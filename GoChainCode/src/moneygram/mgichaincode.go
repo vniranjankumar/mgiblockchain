@@ -32,12 +32,13 @@ func main() {
 type TransactionEvent struct {
 	TranID           	  string `json:"tranID"`
 	SenderName            string `json:"senderName"`
-	SenderCountry         string `json:"senderCountry"`
+	SenderCountryName     string `json:"senderCountryName"`
 	ReceiverName          string `json:"receiverName"`
-	ReceiverCountry       string `json:"receiverCountry"`
+	ReceiverCountryName   string `json:"receiverCountryName"`
 	Amount		          string `json:"amount"`
-//	DateTime	          string `json:"datetime"`
-//	AccountNumber         string `json:"accountNumber"`
+	Status				  string `json:"status"`
+	DateTime	          string `json:"datetime"`
+	AccountNumber         string `json:"accountNumber"`
 }
 
 //==============================================================================================================================
@@ -155,10 +156,13 @@ func (t *SimpleChaincode) create_event(stub shim.ChaincodeStubInterface, args []
 	
 	tranID     			:= "\"TranID\":\""+args[0]+"\", "
 	senderName     		:= "\"SenderName\":\""+args[1]+"\", "
-	senderCountry       := "\"SenderCountry\":\""+args[2]+"\", "
+	senderCountryName   := "\"SenderCountryName\":\""+args[2]+"\", "
 	receiverName     	:= "\"ReceiverName\":\""+args[3]+"\", "
-	receiverCountry     := "\"ReceiverCountry\":\""+args[4]+"\", "
+	receiverCountryName := "\"ReceiverCountryName\":\""+args[4]+"\", "
 	amount     			:= "\"Amount\":\""+args[5]+"\""
+	status     			:= "\"Status\":\""+args[6]+"\""
+	dateTime   			:= "\"DateTime\":\""+args[7]+"\""
+	accountNumber     	:= "\"AccountNumber\":\""+args[8]+"\""
 
     // Concatenates the variables to create the total JSON object
 	event_json := "{"+tranID+senderName+senderCountry+receiverName+receiverCountry+amount+"}" 		
