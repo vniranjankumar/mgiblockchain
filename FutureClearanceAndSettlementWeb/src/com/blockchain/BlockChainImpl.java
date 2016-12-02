@@ -12,8 +12,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.database.TransactionLedgerDO;
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -22,23 +25,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BlockChainImpl implements BlockChainService {
 	
-	private static String chaincodeID = "3860477d5aacb38ffa891be33f9a5478cb98e73317ad11c69531a900d08855fab05c686686c6f016fb13990767a80f1443b3ce6bd3e39204a72439703746afe4";	
-	private static String chaincodeURL = "https://5e5b825953aa4b2795bf5ae131c4697b-vp0.us.blockchain.ibm.com:5002/chaincode";
+	private static String chaincodeID = "86a12ae10a5b75eb1818de5f876e567e917b7d7b21d44822e65c0a6642d2fc88f112fc141aee7a2532b75d94a9da8f85483d28014e0f6d1416f6bf733cb071b3";	
+	private static String chaincodeURL = "https://e4229cbb71ae4d7a8730530346055d41-vp0.us.blockchain.ibm.com:5002/chaincode";
 	
 	public ArrayList<TransactionLedgerDO> queryTranData(){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
 		String req = buildJsonRequest("WebAppAdmin", "query", "get_events", "");
 		String jsonInString = callBlockChainAPI("POST", req);
-		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},"));
+		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},\"id"));
 		jsonInString = jsonInString.replaceAll("\\\\","");
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
 			// Convert JSON string to Object
-			TransactionLedgerDO obj = mapper.readValue(jsonInString, TransactionLedgerDO.class);
-			dataList.add(obj);
-			
+			dataList = mapper.readValue(jsonInString, new TypeReference<List<TransactionLedgerDO>>(){});
+
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
