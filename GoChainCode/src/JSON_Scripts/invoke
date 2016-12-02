@@ -4,15 +4,15 @@
   "params": {
     "type": 1,
     "chaincodeID": {
-      "name": "a1a25fffb2bbe30dd7e63e62ad01a8634ac3b222bcc47188dca6c0445b52360a85f7a6536282e045cfd8831da401412abe6a02130195141e041aba9827d1ae44"
+      "name": "3860477d5aacb38ffa891be33f9a5478cb98e73317ad11c69531a900d08855fab05c686686c6f016fb13990767a80f1443b3ce6bd3e39204a72439703746afe4"
     },
     "ctorMsg": {
       "function": "create_event",
       "args": [
-        "123", "Niranjan","USA", "Sriram","USA","100$", "Deposited","12/1/2016 5 PM","****3654"
+        "123", "Niranjan","USA", "Sriram","USA","100$", "Clearing Pending","12/1/2016 5 PM","****3654"
       ]
     },
-    "secureContext": "user_type1_0"
+    "secureContext": "WebAppAdmin"
   },
   "id": 0
 }
