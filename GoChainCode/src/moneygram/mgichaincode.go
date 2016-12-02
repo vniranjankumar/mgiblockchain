@@ -37,7 +37,7 @@ type TransactionEvent struct {
 	ReceiverCountryName   string `json:"receiverCountryName"`
 	Amount		          string `json:"amount"`
 	Status				  string `json:"status"`
-	DateTime	          string `json:"datetime"`
+	DateTime	          string `json:"dateTime"`
 	DepositAccountNumber  string `json:"depositAccountNumber"`
 }
 

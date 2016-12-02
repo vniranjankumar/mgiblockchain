@@ -22,15 +22,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BlockChainImpl implements BlockChainService {
 	
-	private static String chaincodeID = "ec7bb54de1772fb7478ee6782bdbcb693283ec80bc0a4aed927eff72bbaa7612dd54f43b26ad8f39c32be44497ee65bec008e3751b099cbaecd48e494c3e0989";	
-	private static String chaincodeURL = "https://e89e437ae32349eebfc1a0af95fb5b78-vp0.us.blockchain.ibm.com:5002/chaincode";
+	private static String chaincodeID = "03f8b9abadb6fece0a60ec7ecb3cb038f68017fcb2b926eeb15ebdb806baa7940f3b1401423d6702cd457d9061aeaa61ebf9efbd6e1fdbbd203adac622c34776";	
+	private static String chaincodeURL = "https://5e5b825953aa4b2795bf5ae131c4697b-vp0.us.blockchain.ibm.com:5002/chaincode";
 	
 	public ArrayList<TransactionLedgerDO> queryTranData(){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		String req = buildJsonRequest("user_type1_0", "query", "get_event_details", "\"123\"");
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_event_details", "\"123\"");
 		String jsonInString = callBlockChainAPI("POST", req);
-		jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},"));
+		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},"));
+		jsonInString = jsonInString.replaceAll("\\\\","");
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
@@ -121,7 +122,10 @@ public class BlockChainImpl implements BlockChainService {
 	
 	public static void main(String[] args){
 		
-		String req = buildJsonRequest("user_type1_0", "query", "get_event_details", "\"123\"");
+		BlockChainImpl obj = new BlockChainImpl();
+		obj.queryTranData();
+		
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_event_details", "\"123\"");
 		System.out.println(req);
 		String temp = callBlockChainAPI("POST", req);
 		temp = temp.substring(temp.indexOf("message")+10,temp.indexOf("\"},"));
