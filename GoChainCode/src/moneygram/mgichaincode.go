@@ -159,9 +159,9 @@ func (t *SimpleChaincode) create_event(stub shim.ChaincodeStubInterface, args []
 	senderCountryName   := "\"SenderCountryName\":\""+args[2]+"\", "
 	receiverName     	:= "\"ReceiverName\":\""+args[3]+"\", "
 	receiverCountryName := "\"ReceiverCountryName\":\""+args[4]+"\", "
-	amount     			:= "\"Amount\":\""+args[5]+"\""
-	status     			:= "\"Status\":\""+args[6]+"\""
-	dateTime   			:= "\"DateTime\":\""+args[7]+"\""
+	amount     			:= "\"Amount\":\""+args[5]+"\","
+	status     			:= "\"Status\":\""+args[6]+"\","
+	dateTime   			:= "\"DateTime\":\""+args[7]+"\","
 	accountNumber     	:= "\"AccountNumber\":\""+args[8]+"\""
 
     // Concatenates the variables to create the total JSON object
