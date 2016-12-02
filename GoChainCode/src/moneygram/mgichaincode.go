@@ -129,6 +129,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		}
 		
 		var temp []byte
+		result := "["
 		for _, tranID := range tranHld.TranIDs {		
 			tranEvent, err = t.retrieve_tranEvent(stub, tranID)
 			if err != nil { 
@@ -141,8 +142,6 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 				result += string(temp) + ","
 			}
 		}
-	
-		result := "["
 		
 		if len(result) == 1 {
 			result = "[]"
