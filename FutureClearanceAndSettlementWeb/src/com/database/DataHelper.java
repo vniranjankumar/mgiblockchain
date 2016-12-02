@@ -9,6 +9,7 @@ import com.blockchain.BlockChainImpl;
 import com.blockchain.BlockChainService;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import com.util.AppConstants;
 
 /**
  * @author Niranjan
@@ -32,13 +33,13 @@ public class DataHelper {
 	}
 	
 	public static ArrayList<TransactionLedgerDO> getTranData(String role){
-		
-		// Commenting the block chain code temporarily
-		//BlockChainService chainService = new BlockChainImpl();
-		//return chainService.queryTranData();
-		
-		//TODO: Remove below mock data call once, Above blockchain service code is working.
-		return mockTranData(role);
+		if(!AppConstants.useMockData){			
+			BlockChainService chainService = new BlockChainImpl();
+			return chainService.queryTranData();
+		}else{
+			//TODO: Remove below mock data call once, Above blockchain service code is working.
+			return mockTranData(role);
+		}		
 	}
 	
 	public static ArrayList<TransactionLedgerDO> mockTranData(String role){
