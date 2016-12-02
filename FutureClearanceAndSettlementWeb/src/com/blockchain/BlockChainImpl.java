@@ -28,7 +28,7 @@ public class BlockChainImpl implements BlockChainService {
 	public ArrayList<TransactionLedgerDO> queryTranData(){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		String req = buildJsonRequest("WebAppAdmin", "query", "get_event_details", "\"123\"");
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_events", "");
 		String jsonInString = callBlockChainAPI("POST", req);
 		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},"));
 		jsonInString = jsonInString.replaceAll("\\\\","");

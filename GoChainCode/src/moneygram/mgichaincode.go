@@ -117,7 +117,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		return bytes, nil
 	}else if function == "get_events" {
 		
-		bytes, err = stub.GetState("tranIDs")
+		bytes, err := stub.GetState("tranIDs")
 		if err != nil { 
 			return nil, errors.New("Unable to get tranIDs") 
 		}
