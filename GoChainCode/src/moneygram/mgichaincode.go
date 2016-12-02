@@ -131,7 +131,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		var temp []byte
 		result := "["
 		for _, tranID := range tranHld.TranIDs {		
-			tranEvent, err = t.retrieve_tranEvent(stub, tranID)
+			tranEvent, err := t.retrieve_tranEvent(stub, tranID)
 			if err != nil { 
 				fmt.Printf("QUERY: Error retrieving tranEvent: %s", err); 
 				return nil, errors.New("QUERY: Error retrieving tranEvent "+err.Error()) 
