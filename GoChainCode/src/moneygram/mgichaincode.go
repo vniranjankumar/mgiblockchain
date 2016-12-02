@@ -128,11 +128,17 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 			return nil, errors.New("Corrupt TRAN_Holder record") 
 		}
 		
-		var tranEvent []byte
+		var temp []byte
 		for _, tranID := range tranHld.TranIDs {		
-			tranEvent, err := t.retrieve_tranEvent(stub, tranID)
+			tranEvent, err = t.retrieve_tranEvent(stub, tranID)
+			if err != nil { 
+				fmt.Printf("QUERY: Error retrieving tranEvent: %s", err); 
+				return nil, errors.New("QUERY: Error retrieving tranEvent "+err.Error()) 
+			}
+			
+			temp, err = json.Marshal(tranEvent)
 			if err == nil {
-				result += string(tranEvent) + ","
+				result += string(temp) + ","
 			}
 		}
 	
