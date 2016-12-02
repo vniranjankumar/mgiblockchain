@@ -38,7 +38,7 @@ type TransactionEvent struct {
 	Amount		          string `json:"amount"`
 	Status				  string `json:"status"`
 	DateTime	          string `json:"datetime"`
-	AccountNumber         string `json:"accountNumber"`
+	DepositAccountNumber  string `json:"depositAccountNumber"`
 }
 
 //==============================================================================================================================
@@ -162,10 +162,10 @@ func (t *SimpleChaincode) create_event(stub shim.ChaincodeStubInterface, args []
 	amount     			:= "\"Amount\":\""+args[5]+"\","
 	status     			:= "\"Status\":\""+args[6]+"\","
 	dateTime   			:= "\"DateTime\":\""+args[7]+"\","
-	accountNumber     	:= "\"AccountNumber\":\""+args[8]+"\""
+	depositAccountNumber:= "\"DepositAccountNumber\":\""+args[8]+"\""
 
     // Concatenates the variables to create the total JSON object
-	event_json := "{"+tranID+senderName+senderCountryName+receiverName+receiverCountryName+amount+status+dateTime+accountNumber+"}" 		
+	event_json := "{"+tranID+senderName+senderCountryName+receiverName+receiverCountryName+amount+status+dateTime+depositAccountNumber+"}" 		
 	// Convert the JSON defined above into a TransactionEvent object for go
 	err := json.Unmarshal([]byte(event_json), &tEvent)										
 	if err != nil { 
