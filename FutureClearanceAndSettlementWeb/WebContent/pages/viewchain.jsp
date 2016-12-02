@@ -96,54 +96,29 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     <div class="content-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="product-item-1">
-                        <div class="product-thumb">
-                            <img src="images/gallery-image-1.jpg" alt="Product Title">
-                        </div> <!-- /.product-thumb -->
-                        <div class="product-content">
-                            <h5><a href="#">Kool Shirt</a></h5>
-                            <span class="tagline">Partner Name</span>
-                            <span class="price">$25.00</span>
-                            <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt asperiores tenetur deleniti labore!</p>
-                        </div> <!-- /.product-content -->
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-4 -->
-                <div class="col-md-4">
-                    <div class="product-holder">
-                        <div class="product-item-2">
-                            <div class="product-thumb">
-                                <img src="images/featured/1.jpg" alt="Product Title">
-                            </div> <!-- /.product-thumb -->
-                            <div class="product-content overlay">
-                                <h5><a href="#">Kooler Shirt</a></h5>
-                                <span class="tagline">Partner Name</span>
-                                <span class="price">$30.00</span>
-                                <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt tenetur deleniti labore!</p>
-                            </div> <!-- /.product-content -->
-                        </div> <!-- /.product-item-2 -->
-                        <div class="product-item-2">
-                            <div class="product-thumb">
-                                <img src="images/featured/2.jpg" alt="Product Title">
-                            </div> <!-- /.product-thumb -->
-                            <div class="product-content overlay">
-                                <h5><a href="#">Koolest Shirt</a></h5>
-                                <span class="tagline">Partner Name</span>
-                                <span class="price">$45.00</span>
-                                <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt tenetur deleniti labore!</p>
-                            </div> <!-- /.product-content -->
-                        </div> <!-- /.product-item-2 -->
-                        <div class="clearfix"></div>
-                    </div> <!-- /.product-holder -->
-                </div> <!-- /.col-md-4 -->
-               <div class="col-md-4">
-                    <div class="product-item-3">
-                        <div class="product-thumb">
-                            <img src="images/featured/6.jpg" alt="">
-                        </div> <!-- /.product-thumb -->                        
-                    </div> <!-- /.product-item-3 -->
-                </div> <!-- /.col-md-4 -->
-            </div> <!-- /.row -->            
+				<legend>Chain Properties</legend>
+				<s:form action="updateChainID">
+					<fieldset>
+						<s:textfield name="chainId" label="Chain ID" placeholder="Chain ID"></s:textfield>
+						<s:submit value="Apply" style="float:right"></s:submit>
+					</fieldset>
+				</s:form>
+				
+				<s:form action="updateChainUrl">
+					<fieldset>
+						<s:textfield name="chainUrl" label="Chain URL" placeholder="Chain URL"></s:textfield>
+						<s:submit value="Apply" style="float:right"></s:submit>
+					</fieldset>
+				</s:form>
+				
+				<s:form action="publishEvent">
+					<fieldset>
+						<s:textarea name="transactionXML" label="Transaction XML" cols="80" rows="20"/>
+						<s:submit value="Submit" style="float:right"></s:submit>
+					</fieldset>
+				</s:form>
+
+			</div> <!-- /.row -->            
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->
 

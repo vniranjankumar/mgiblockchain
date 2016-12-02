@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import com.blockchain.BlockChainImpl;
 import com.blockchain.BlockChainService;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 /**
  * @author Niranjan
  *
@@ -31,18 +33,22 @@ public class DataHelper {
 	
 	public static ArrayList<TransactionLedgerDO> getTranData(String role){
 		
-		BlockChainService chainService = new BlockChainImpl();
-		return chainService.queryTranData();
+		// Commenting the block chain code temporarily
+		//BlockChainService chainService = new BlockChainImpl();
+		//return chainService.queryTranData();
+		
+		//TODO: Remove below mock data call once, Above blockchain service code is working.
+		return mockTranData(role);
 	}
 	
 	public static ArrayList<TransactionLedgerDO> mockTranData(String role){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		TransactionLedgerDO data1 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-26-2016 5:00PM","******2354","Deposited");
-		TransactionLedgerDO data2 = new TransactionLedgerDO("Sriram","USA","Pradeep","Mexico","50","11-27-2016 7:00PM","******2354","Deposited");
-		TransactionLedgerDO data3 = new TransactionLedgerDO("Niranjan","USA","Sankar","USA","100","11-25-2016 3:00PM","","Sent");
-		TransactionLedgerDO data4 = new TransactionLedgerDO("Sankar","USA","Praveen","India","200","11-23-2016 1:00PM","******2354","Clearance Pending");
-		TransactionLedgerDO data5 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-23-2016 2:00PM","","Received");
+		TransactionLedgerDO data1 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-26-2016 5:00PM","******2354","Sucess");
+		TransactionLedgerDO data2 = new TransactionLedgerDO("Sriram","USA","Pradeep","Mexico","50","11-27-2016 7:00PM","******2354","Sucess");
+		TransactionLedgerDO data3 = new TransactionLedgerDO("Niranjan","USA","Sankar","USA","100","11-25-2016 3:00PM","","Sucess");
+		TransactionLedgerDO data4 = new TransactionLedgerDO("Sankar","USA","Praveen","India","200","11-23-2016 1:00PM","******2354","Sucess");
+		TransactionLedgerDO data5 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-23-2016 2:00PM","","Sucess");
 		
 		if(role.equalsIgnoreCase("mgiauditor")){
 			dataList.add(data1);dataList.add(data2);dataList.add(data3);dataList.add(data4);dataList.add(data5);
