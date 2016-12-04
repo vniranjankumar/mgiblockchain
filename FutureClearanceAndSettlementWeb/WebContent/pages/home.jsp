@@ -112,16 +112,15 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 				</s:if>				   
                 <div class="col-md-4">
                 	<s:if test="%{#session.login ==true}">
-	                    <div class="product-item-1">
+	                    <div class="product-item-2">
 	                        <div class="product-thumb">
-	                            <img src="images/gallery-image-1.jpg" alt="Product Title">
+	                            <img src="images/blockchain_image3.jpg" alt="Product Title">
 	                        </div> <!-- /.product-thumb -->
-	                        <div class="product-content">
-	                            <h5><a href="#">Kool Shirt</a></h5>
-	                            <span class="tagline">Partner Name</span>
-	                            <span class="price">$25.00</span>
-	                            <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt asperiores tenetur deleniti labore!</p>
-	                        </div> <!-- /.product-content -->
+	                        <div class="product-content overlay">
+                                <h5><a href="#">Heading</a></h5>
+                                <span class="tagline">Tag line</span>                                
+                                <p>Add Content about the technology and applicaion</p>
+	                         </div> <!-- /.product-content-overlay -->
 	                    </div> <!-- /.product-item -->
 	                </s:if>
                 </div> <!-- /.col-md-4 -->
@@ -130,26 +129,14 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                     	<s:if test="%{#session.login ==true}">
 	                        <div class="product-item-2">
 	                            <div class="product-thumb">
-	                                <img src="images/featured/1.jpg" alt="Product Title">
+	                                <img src="images/blockchain_image2.jpg" alt="Product Title">
 	                            </div> <!-- /.product-thumb -->
 	                            <div class="product-content overlay">
-	                                <h5><a href="#">Kooler Shirt</a></h5>
-	                                <span class="tagline">Partner Name</span>
-	                                <span class="price">$30.00</span>
-	                                <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt tenetur deleniti labore!</p>
+	                                <h5><a href="#">Heading</a></h5>
+	                                <span class="tagline">Tag line</span>	                                
+	                                <p>Add Content about the technology and applicaion</p>
 	                            </div> <!-- /.product-content -->
-	                        </div> <!-- /.product-item-2 -->
-	                        <div class="product-item-2">
-	                            <div class="product-thumb">
-	                                <img src="images/featured/2.jpg" alt="Product Title">
-	                            </div> <!-- /.product-thumb -->
-	                            <div class="product-content overlay">
-	                                <h5><a href="#">Koolest Shirt</a></h5>
-	                                <span class="tagline">Partner Name</span>
-	                                <span class="price">$45.00</span>
-	                                <p>Doloremque quo possimus quas necessitatibus blanditiis excepturi. Commodi, sunt tenetur deleniti labore!</p>
-	                            </div> <!-- /.product-content -->
-	                        </div> <!-- /.product-item-2 -->
+	                        </div> <!-- /.product-item-2 -->	                       
 	                        <div class="clearfix"></div>
 	                     </s:if>
 		               	 <s:else>
@@ -174,13 +161,18 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                 </div> <!-- /.col-md-4 -->                
                 <div class="col-md-4">
                 	<s:if test="%{#session.login ==true}">
-	                    <div class="product-item-3">
+	                    <div class="product-item-2">
 	                    	<s:if test="%{#session.login ==true}">  
 	                    		<div class="product-thumb">
-		                            <img src="images/featured/6.jpg" alt="">
-		                        </div> <!-- /.product-thumb -->		                                     	
+		                            <img src="images/blockchain_image1.jpg" alt="">
+		                        </div> <!-- /.product-thumb -->
+		                        <div class="product-content overlay">
+	                                <h5><a href="#">Heading</a></h5>
+	                                <span class="tagline">Tag line</span>	                                
+	                                <p>Add Content about the technology and applicaion</p>
+		                         </div> <!-- /.product-content-overlay -->		                                     	
 							</s:if>							
-	                    </div> <!-- /.product-item-3 -->
+	                    </div> <!-- /.product-item-2 -->
 	                </s:if>
                 </div> <!-- /.col-md-4 -->
             </div> <!-- /.row -->            
