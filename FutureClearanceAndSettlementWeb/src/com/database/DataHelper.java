@@ -65,24 +65,16 @@ public class DataHelper {
 	public static ArrayList<MembersDO> mockMembersDO(){
 		ArrayList<MembersDO> dataList = new ArrayList<MembersDO>();
 		
-		MembersDO data1 = new MembersDO("Moneygram", "mgi.jpg", "Details about MGI....");
-		MembersDO data2 = new MembersDO("Walmart", "wm.jpg", "Details about Walmart....");
-		MembersDO data3 = new MembersDO("Bancomer", "bm.jpg", "Details about Bancomer....");
+		MembersDO data1 = new MembersDO("Moneygram", "mgi.jpg", AppConstants.aboutMoneygram);
+		MembersDO data2 = new MembersDO("Walmart", "wm.jpg", AppConstants.aboutWallmart);
+		MembersDO data3 = new MembersDO("Bancomer", "bm.jpg", AppConstants.aboutBancomer);
 		
 		dataList.add(data1);
 		dataList.add(data2);
 		dataList.add(data3);
 		
 		return dataList;
-	}
-	
-	public static void applyChainID(String chainId) {
-		System.out.println("Submitted Chain ID = "+chainId);
-	}
-	
-	public static void applyChainURL(String chainURL) {
-		System.out.println("Submitted Chain URL = "+chainURL);
-	}
+	}	
 	
 	public static void publishTransaction(String transactionXML) {
 		System.out.println("Submitted Transaction XML = "+transactionXML);

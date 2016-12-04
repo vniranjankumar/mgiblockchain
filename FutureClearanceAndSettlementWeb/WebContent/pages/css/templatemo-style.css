@@ -474,6 +474,7 @@ h6 {
     margin-bottom: 8px;
   }
   
+   .product-holder .form-style-5 input[type="text"],
   .product-holder .form-style-5 input[type="text"],
   .product-holder .form-style-5 input[type="password"]{
     font-family: Georgia, "Times New Roman", Times, serif;
@@ -496,11 +497,12 @@ h6 {
     margin-bottom: 30px;
   }
   
+  .product-holder .form-style-5 input[type="text"],
   .product-holder .form-style-5 input[type="text"]:focus,
   .product-holder .form-style-5 input[type="password"]:focus{
     background: #d2d9dd;
   }
-
+  
   .product-holder .form-style-5 input[type="submit"],
   .product-holder .form-style-5 input[type="button"]
   {
@@ -840,6 +842,7 @@ textarea {
 .membersCell {
   padding: 6px 12px;
   display: table-cell;
+  vertical-align:middle;
 }
 /* @media screen and (max-width: 960px) {
   .membersCell {
@@ -847,6 +850,23 @@ textarea {
     display: block;
   }
 } */
+
+ #viewchainform{
+    max-width: 100%;
+   }
+  
+  #viewchainform legend {
+  	font-family:"Open Sans", Arial, sans-serif;
+    font-size: 1.8em;    
+  } 
+   
+  #viewchainform input[type="submit"],
+  #viewchainform input[type="button"]
+  {
+    width: 25%;
+    margin-left:40%;
+    margin-top:2%;
+  }  
 
 /* ==========================================================================
     Footer Site Styling
@@ -1030,6 +1050,14 @@ ul.follow-us li a i {
     padding: 2px 12px;
     display: block;
   }
+  
+  #viewchainform input[type="submit"],
+  #viewchainform input[type="button"]
+  {
+    width: 20%;
+    margin-left:25%;
+    margin-top:2%;
+  }
 
 }
 @media (max-width: 767px) {
@@ -1090,6 +1118,14 @@ ul.follow-us li a i {
     padding: 2px 12px;
     display: block;
   }
+  
+  #viewchainform input[type="submit"],
+  #viewchainform input[type="button"]
+  {
+    width: 20%;
+    margin-left:20%;
+    margin-top:2%;
+  }
 }
 @media (max-width: 581px) {
   ul.menu {
@@ -1124,4 +1160,12 @@ ul.follow-us li a i {
     padding: 2px 12px;
     display: block;
   } 
+  
+  #viewchainform input[type="submit"],
+  #viewchainform input[type="button"]
+  {
+    width: 15%;
+    margin-left:10%;
+    margin-top:2%;
+  }
 }
