@@ -121,6 +121,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						      </div>
 						      <div class="membersCell">
 						        Deposit Account Number
+						      </div>
+						      <div class="membersCell">
+						        Status
 						      </div>						      
 						    </div>
 						    <!-- Dummy data will be removed when integrated with JSP changes -->						    
@@ -146,7 +149,10 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 								      </div>
 								      <div class="membersCell">
 								        	<s:property value="depositAccountNumber"/>
-								      </div>										      
+								      </div>
+								      <div class="membersCell">
+								        	<s:property value="status"/>
+								      </div>											      
 								 </div>
 						    </s:iterator>					    
 						  </div>					  

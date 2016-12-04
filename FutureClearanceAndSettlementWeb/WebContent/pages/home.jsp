@@ -161,9 +161,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 								</s:if>
 				                <s:form action="login"> 
 									<fieldset>
-										<legend> User Login </legend>
-											<!-- <input type="text" name="field1" placeholder="User Name">
-											<input type="password" name="field2" placeholder="Password"> -->										
+										<legend> User Login </legend>																					
 											<s:textfield name="username" label="Name" placeholder="User Name"></s:textfield>  
 											<s:password name="password" label="Password" placeholder="Password"></s:password>						      
 									</fieldset>							

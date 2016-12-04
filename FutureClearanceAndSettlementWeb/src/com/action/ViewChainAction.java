@@ -64,17 +64,7 @@ public class ViewChainAction implements Action {
     	System.out.println("Entered execute method ====");
         return "SUCCESS";
     }
-    
-    public String applyChainID() throws Exception {
-    	DataHelper.applyChainID(getChainId());
-        return "SUCCESS";
-    }
-    
-    public String applyChainURL() throws Exception {
-    	DataHelper.applyChainURL(getChainUrl());
-        return "SUCCESS";
-    }
-    
+	
     public String publishTransaction() throws Exception {
     	DataHelper.publishTransaction(getTransactionXML());
         return "SUCCESS";
