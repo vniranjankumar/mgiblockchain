@@ -100,7 +100,14 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("Query is running " + function)
 	
-	if function == "get_event_details" {
+	if function == "get_TranIDs"{
+		bytes, err := stub.GetState("tranIDs")
+		if err != nil { 
+			return nil, errors.New("Unable to get tranIDs") 
+		}
+		
+		return bytes, nil
+	}else if function == "get_event_details" {
 		if len(args) != 1 { 
 			fmt.Printf("Incorrect number of arguments passed"); 
 			return nil, errors.New("QUERY: Incorrect number of arguments passed") 
@@ -115,8 +122,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		bytes, err := json.Marshal(tranEvent)
 		
 		return bytes, nil
-	}else if function == "get_events" {
-		
+	}else if function == "get_events" {	
 		bytes, err := stub.GetState("tranIDs")
 		if err != nil { 
 			return nil, errors.New("Unable to get tranIDs") 

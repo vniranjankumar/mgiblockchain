@@ -3,6 +3,10 @@
  */
 package com.database;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author Niranjan
  *
@@ -35,12 +39,18 @@ public class TransactionLedgerDO {
 	public TransactionLedgerDO(String senderName, String senderCountryName, String receiverName,
 			String receiverCountryName, String amount, String dateTime, String depositAccountNumber, String status) {
 		super();
+		int random = (int )(Math.random() * 99999 + 1);
+		this.tranID = random +"";
 		this.senderName = senderName;
 		this.senderCountryName = senderCountryName;
 		this.receiverName = receiverName;
 		this.receiverCountryName = receiverCountryName;
 		this.amount = amount;
-		this.dateTime = dateTime;
+		
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+		Date date = new Date();
+		
+		this.dateTime = dateFormat.format(date);
 		this.depositAccountNumber = depositAccountNumber;
 		this.status = status;
 	}
