@@ -37,7 +37,7 @@ type TransactionEvent struct {
 	ReceiverCountryName   string `json:"receiverCountryName"`
 	Amount		          string `json:"amount"`
 	Status				  string `json:"status"`
-	DateTime	          string `json:"datetime"`
+	DateTime	          string `json:"dateTime"`
 	DepositAccountNumber  string `json:"depositAccountNumber"`
 }
 
@@ -115,6 +115,41 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		bytes, err := json.Marshal(tranEvent)
 		
 		return bytes, nil
+	}else if function == "get_events" {
+		
+		bytes, err := stub.GetState("tranIDs")
+		if err != nil { 
+			return nil, errors.New("Unable to get tranIDs") 
+		}
+	
+		var tranHld TRAN_Holder
+		err = json.Unmarshal(bytes, &tranHld)
+		if err != nil {	
+			return nil, errors.New("Corrupt TRAN_Holder record") 
+		}
+		
+		var temp []byte
+		result := "["
+		for _, tranID := range tranHld.TranIDs {		
+			tranEvent, err := t.retrieve_tranEvent(stub, tranID)
+			if err != nil { 
+				fmt.Printf("QUERY: Error retrieving tranEvent: %s", err); 
+				return nil, errors.New("QUERY: Error retrieving tranEvent "+err.Error()) 
+			}
+			
+			temp, err = json.Marshal(tranEvent)
+			if err == nil {
+				result += string(temp) + ","
+			}
+		}
+		
+		if len(result) == 1 {
+			result = "[]"
+		} else {
+			result = result[:len(result)-1] + "]"
+		}
+		
+		return []byte(result), nil
 	}
 
 	return nil, errors.New("Received unknown function invocation " + function)
@@ -208,6 +243,18 @@ func (t *SimpleChaincode) create_event(stub shim.ChaincodeStubInterface, args []
 	return nil, nil 
 }
 
+
+//==============================================================================================================================
+//	 get_username - Retrieves the username of the user who invoked the chaincode.
+//				  Returns the username as a string.
+//==============================================================================================================================
+
+func (t *SimpleChaincode) get_username(stub shim.ChaincodeStubInterface) (string, error) {
+
+    username, err := stub.ReadCertAttribute("username");
+	if err != nil { return "", errors.New("Couldn't get attribute 'username'. Error: " + err.Error()) }
+	return string(username), nil
+}
 
 //=================================================================================================================================
 //	 Ping Function

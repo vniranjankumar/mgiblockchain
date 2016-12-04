@@ -19,6 +19,10 @@ public class TransactionLedgerDO {
 	private String dateTime;
 	private String depositAccountNumber;
 	
+	public TransactionLedgerDO(){
+		
+	}
+	
 	/**
 	 * @param senderName
 	 * @param senderCountryName

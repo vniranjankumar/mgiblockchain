@@ -12,8 +12,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.database.TransactionLedgerDO;
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -22,22 +25,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BlockChainImpl implements BlockChainService {
 	
-	private static String chaincodeID = "ec7bb54de1772fb7478ee6782bdbcb693283ec80bc0a4aed927eff72bbaa7612dd54f43b26ad8f39c32be44497ee65bec008e3751b099cbaecd48e494c3e0989";	
-	private static String chaincodeURL = "https://e89e437ae32349eebfc1a0af95fb5b78-vp0.us.blockchain.ibm.com:5002/chaincode";
+	private static String chaincodeID = "86a12ae10a5b75eb1818de5f876e567e917b7d7b21d44822e65c0a6642d2fc88f112fc141aee7a2532b75d94a9da8f85483d28014e0f6d1416f6bf733cb071b3";	
+	private static String chaincodeURL = "https://e4229cbb71ae4d7a8730530346055d41-vp0.us.blockchain.ibm.com:5002/chaincode";
 	
 	public ArrayList<TransactionLedgerDO> queryTranData(){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		String req = buildJsonRequest("user_type1_0", "query", "get_event_details", "\"123\"");
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_events", "");
 		String jsonInString = callBlockChainAPI("POST", req);
-		jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},"));
+		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},\"id"));
+		jsonInString = jsonInString.replaceAll("\\\\","");
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
 			// Convert JSON string to Object
-			TransactionLedgerDO obj = mapper.readValue(jsonInString, TransactionLedgerDO.class);
-			dataList.add(obj);
-			
+			dataList = mapper.readValue(jsonInString, new TypeReference<List<TransactionLedgerDO>>(){});
+
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -121,7 +124,10 @@ public class BlockChainImpl implements BlockChainService {
 	
 	public static void main(String[] args){
 		
-		String req = buildJsonRequest("user_type1_0", "query", "get_event_details", "\"123\"");
+		BlockChainImpl obj = new BlockChainImpl();
+		obj.queryTranData();
+		
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_event_details", "\"123\"");
 		System.out.println(req);
 		String temp = callBlockChainAPI("POST", req);
 		temp = temp.substring(temp.indexOf("message")+10,temp.indexOf("\"},"));
