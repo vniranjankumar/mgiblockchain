@@ -9,7 +9,7 @@
     "ctorMsg": {
       "function": "create_event",
       "args": [
-        "2", "Niranjan","USA", "Sriram","USA","100$", "Clearing Pending","12/1/2016 5 PM","****3654"
+        "3", "Sriram","USA", "Sankar","USA","100$", "Deposited","12/1/2016 5 PM","****3654"
       ]
     },
     "secureContext": "WebAppAdmin"

@@ -96,28 +96,33 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     <div class="content-section">
         <div class="container">
             <div class="row">
-				<legend>Chain Properties</legend>
-				<s:form action="updateChainID">
-					<fieldset>
-						<s:textfield name="chainId" label="Chain ID" placeholder="Chain ID"></s:textfield>
-						<s:submit value="Apply" style="float:right"></s:submit>
-					</fieldset>
-				</s:form>
-				
-				<s:form action="updateChainUrl">
-					<fieldset>
-						<s:textfield name="chainUrl" label="Chain URL" placeholder="Chain URL"></s:textfield>
-						<s:submit value="Apply" style="float:right"></s:submit>
-					</fieldset>
-				</s:form>
-				
-				<s:form action="publishEvent">
-					<fieldset>
-						<s:textarea name="transactionXML" label="Transaction XML" cols="80" rows="20"/>
-						<s:submit value="Submit" style="float:right"></s:submit>
-					</fieldset>
-				</s:form>
-
+            	<div class="col-md-12">
+            		<div class="product-holder">
+		            	<div id ="viewchainform" class="form-style-5 full-row" >					
+							<%-- <s:form action="updateChainID">
+								<fieldset>
+									<s:textfield name="chainId" label="Chain ID" placeholder="Chain ID"></s:textfield>
+									<s:submit value="Apply" style="float:right"></s:submit>
+								</fieldset>
+							</s:form> --%>
+							
+							<%-- <s:form action="updateChainUrl">
+								<fieldset>
+									<s:textfield name="chainUrl" label="Chain URL" placeholder="Chain URL"></s:textfield>
+									<s:submit value="Apply" style="float:right"></s:submit>
+								</fieldset>
+							</s:form> --%>
+							
+							<s:form action="publishEvent">
+								<fieldset>
+									<legend>Chain Properties</legend>
+									<s:textarea name="transactionXML" label="Transaction XML" cols="150" rows="15"/>
+									<s:submit value="Submit"></s:submit>							
+								</fieldset>
+							</s:form>
+						</div>	<!-- form-style-5 full-row -->
+					</div>	<!-- product-holder -->
+				</div> <!-- col-md-12 -->
 			</div> <!-- /.row -->            
         </div> <!-- /.container -->
     </div> <!-- /.content-section -->

@@ -24,13 +24,7 @@
 		</action>
 		<action name="viewchain" class="com.action.ViewChainAction">
 			<result name="SUCCESS">viewchain.jsp</result>
-		</action>
-		<action name="updateChainID" method="applyChainID" class="com.action.ViewChainAction">
-			<result name="SUCCESS">viewchain.jsp</result>
-		</action>
-		<action name="updateChainUrl" method="applyChainURL" class="com.action.ViewChainAction">
-			<result name="SUCCESS">viewchain.jsp</result>
-		</action>
+		</action>		
 		<action name="publishEvent" method="publishTransaction" class="com.action.ViewChainAction">
 			<result name="SUCCESS">viewchain.jsp</result>
 		</action>
