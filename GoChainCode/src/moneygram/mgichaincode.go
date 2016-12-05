@@ -204,10 +204,10 @@ func (t *SimpleChaincode) create_ledger(stub shim.ChaincodeStubInterface, args [
 	originatingAccountName      := "\"OriginatingAccountName\":\""+args[2]+"\", "
 	originatingAccountNumber    := "\"OriginatingAccountNumber\":\""+args[3]+"\", "
 	receiverBankName 			:= "\"ReceiverBankName\":\""+args[4]+"\", "
-	receiverAccountName     	:= "\"ReceiverAccountName\":\""+args[5]+"\","
-	receiverAccountNumber     	:= "\"ReceiverAccountNumber\":\""+args[6]+"\","
-	settlementAmount   			:= "\"SettlementAmount\":\""+args[7]+"\","
-	settlementDateTime			:= "\"SettlementDateTime\":\""+args[8]+"\""
+	receiverAccountName     	:= "\"ReceiverAccountName\":\""+args[5]+"\", "
+	receiverAccountNumber     	:= "\"ReceiverAccountNumber\":\""+args[6]+"\", "
+	settlementAmount   			:= "\"SettlementAmount\":\""+args[7]+"\", "
+	settlementDateTime			:= "\"SettlementDateTime\":\""+args[8]+"\", "
 	settlementStatus			:= "\"SettlementStatus\":\""+args[9]+"\""
 
     // Concatenates the variables to create the total JSON object
