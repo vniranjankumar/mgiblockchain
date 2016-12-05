@@ -180,6 +180,12 @@ func (t *SimpleChaincode) retrieve_ledger(stub shim.ChaincodeStubInterface, sett
 //==============================================================================================================================
 func (t *SimpleChaincode) update_ledger_status(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
+	ledger, err := t.retrieve_ledger(stub, args[0])
+	if err != nil { 
+		fmt.Printf("QUERY: Error retrieving settlementID: %s", err); 
+		return nil, errors.New("QUERY: Error retrieving settlementID "+err.Error()) 
+	}
+	
 	return nil, nil;
 }
 
