@@ -26,27 +26,28 @@ func main() {
 }
 
 //==============================================================================================================================
-//	TransactionEvent - Defines the structure for a event object. JSON on right tells it what JSON fields to map to
-//			  that element when reading a JSON object into the struct e.g. JSON datetime -> Struct datetime.
+//	SettlementLedger - Defines the structure for a ledger object. JSON on right tells it what JSON fields to map to
+//			  		   that element when reading a JSON object into the struct e.g. JSON datetime -> Struct datetime.
 //==============================================================================================================================
-type TransactionEvent struct {
-	TranID           	  string `json:"tranID"`
-	SenderName            string `json:"senderName"`
-	SenderCountryName     string `json:"senderCountryName"`
-	ReceiverName          string `json:"receiverName"`
-	ReceiverCountryName   string `json:"receiverCountryName"`
-	Amount		          string `json:"amount"`
-	Status				  string `json:"status"`
-	DateTime	          string `json:"dateTime"`
-	DepositAccountNumber  string `json:"depositAccountNumber"`
+type SettlementLedger struct {
+	SettlementID           	  string `json:"settlementID"`
+	OriginatingBankName       string `json:"originatingBankName"`
+	OriginatingAccountName    string `json:"originatingAccountName"`
+	OriginatingAccountNumber  string `json:"originatingAccountNumber"`
+	ReceiverBankName   		  string `json:"receiverBankName"`
+	ReceiverAccountName		  string `json:"receiverAccountName"`
+	ReceiverAccountNumber     string `json:"receiverAccountNumber"`
+	SettlementAmount	      string `json:"settlementAmount"`
+	SettlementDateTime  	  string `json:"settlementDateTime"`
+	SettlementStatus  	  	  string `json:"settlementStatus"`
 }
 
 //==============================================================================================================================
-//	TranID Holder - Defines the structure that holds all the tranIDs for TransactionEvents that have been created.
-//				    Used as an index when querying all transactions.
+//	Ledger Holder - Defines the structure that holds all the settlementIDs for SettlementLedger that have been created.
+//				    Used as an index when querying all records.
 //==============================================================================================================================
-type TRAN_Holder struct {
-	TranIDs []string `json:"tranID"`
+type Ledger_Holder struct {
+	SettlementIDs []string `json:"settlementIDs"`
 }
 
 
@@ -56,13 +57,13 @@ type TRAN_Holder struct {
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("invoke Init Method")
 	
-	var tranHld TRAN_Holder
+	var ledgerHld Ledger_Holder
 	  
     if len(args) != 1 {
         return nil, errors.New("Incorrect number of arguments. Expecting 1")
     }
 
-    bytes, err := json.Marshal(tranHld)
+    bytes, err := json.Marshal(ledgerHld)
 
     if err != nil { 
     	return nil, errors.New("Error creating TRAN_Holder record") 
@@ -84,8 +85,10 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	// Handle different functions
 	if function == "init" {													//initialize the chaincode state, used as reset
 		return t.Init(stub, "init", args)
-	}else if function == "create_event" {
-        return t.create_event(stub, args)
+	}else if function == "create_ledger" {
+        return t.create_ledger(stub, args)
+	}else if function == "update_ledger_status" {
+        return t.update_ledger_status(stub, args)
 	}else if function == "ping" {
         return t.ping(stub)
     }
@@ -100,50 +103,35 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("Query is running " + function)
 	
-	if function == "get_TranIDs"{
-		bytes, err := stub.GetState("tranIDs")
+	if function == "get_settlementIDs"{
+		bytes, err := stub.GetState("settlementIDs")
 		if err != nil { 
 			return nil, errors.New("Unable to get tranIDs") 
 		}
 		
 		return bytes, nil
-	}else if function == "get_event_details" {
-		if len(args) != 1 { 
-			fmt.Printf("Incorrect number of arguments passed"); 
-			return nil, errors.New("QUERY: Incorrect number of arguments passed") 
-		}
-		
-		tranEvent, err := t.retrieve_tranEvent(stub, args[0])
+	}else if function == "get_ledgers" {	
+		bytes, err := stub.GetState("settlementIDs")
 		if err != nil { 
-			fmt.Printf("QUERY: Error retrieving tranEvent: %s", err); 
-			return nil, errors.New("QUERY: Error retrieving tranEvent "+err.Error()) 
-		}
-		
-		bytes, err := json.Marshal(tranEvent)
-		
-		return bytes, nil
-	}else if function == "get_events" {	
-		bytes, err := stub.GetState("tranIDs")
-		if err != nil { 
-			return nil, errors.New("Unable to get tranIDs") 
+			return nil, errors.New("Unable to get settlementIDs") 
 		}
 	
-		var tranHld TRAN_Holder
-		err = json.Unmarshal(bytes, &tranHld)
+		var ledgerHld Ledger_Holder
+		err = json.Unmarshal(bytes, &ledgerHld)
 		if err != nil {	
-			return nil, errors.New("Corrupt TRAN_Holder record") 
+			return nil, errors.New("Corrupt Ledger_Holder record") 
 		}
 		
 		var temp []byte
 		result := "["
-		for _, tranID := range tranHld.TranIDs {		
-			tranEvent, err := t.retrieve_tranEvent(stub, tranID)
+		for _, settlementID := range ledgerHld.SettlementIDs {		
+			ledger, err := t.retrieve_ledger(stub, settlementID)
 			if err != nil { 
-				fmt.Printf("QUERY: Error retrieving tranEvent: %s", err); 
-				return nil, errors.New("QUERY: Error retrieving tranEvent "+err.Error()) 
+				fmt.Printf("QUERY: Error retrieving settlementID: %s", err); 
+				return nil, errors.New("QUERY: Error retrieving settlementID "+err.Error()) 
 			}
 			
-			temp, err = json.Marshal(tranEvent)
+			temp, err = json.Marshal(ledger)
 			if err == nil {
 				result += string(temp) + ","
 			}
@@ -162,88 +150,99 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 }
 
 //==============================================================================================================================
-//	 retrieve_tranEvent - Gets the state of the data at tranID in the ledger then converts it from the stored
-//					JSON into the TransactionEvent struct for use in the contract. Returns the TransactionEvent struct.
-//					Returns empty TransactionEvent if it errors.
+//	 retrieve_ledger - Gets the state of the data at settlementID in the ledger then converts it from the stored
+//					JSON into the SettlementLedger struct for use in the contract. Returns the SettlementLedger struct.
+//					Returns empty SettlementLedger if it errors.
 //==============================================================================================================================
-func (t *SimpleChaincode) retrieve_tranEvent(stub shim.ChaincodeStubInterface, tranEventID string) (TransactionEvent, error) {
+func (t *SimpleChaincode) retrieve_ledger(stub shim.ChaincodeStubInterface, settlementID string) (SettlementLedger, error) {
 
-	var tranEvent TransactionEvent
+	var ledger SettlementLedger
 
-	bytes, err := stub.GetState(tranEventID);
+	bytes, err := stub.GetState(settlementID);
 
 	if err != nil {	
-		fmt.Printf("retrieve_tranEvent: Failed to retrieving TransactionEvent: %s", err); 
-		return tranEvent, errors.New("retrieve_tranEvent: Error retrieving TransactionEvent with tranEventID = " + tranEventID) 
+		fmt.Printf("retrieve_ledger: Failed to retrieving SettlementLedger: %s", err); 
+		return ledger, errors.New("retrieve_ledger: Error retrieving SettlementLedger with settlementID = " + settlementID) 
 	}
 
-	err = json.Unmarshal(bytes, &tranEvent);
+	err = json.Unmarshal(bytes, &ledger);
 
     if err != nil {	
-    	fmt.Printf("retrieve_tranEvent: Corrupt Event record "+string(bytes)+": %s", err); 
-    	return tranEvent, errors.New("retrieve_tranEvent: Corrupt Event record"+string(bytes))	
+    	fmt.Printf("retrieve_ledger: Corrupt Event record "+string(bytes)+": %s", err); 
+    	return ledger, errors.New("retrieve_ledger: Corrupt Event record"+string(bytes))	
     }
 
-	return tranEvent, nil
+	return ledger, nil
+}
+
+//==============================================================================================================================
+//
+//==============================================================================================================================
+func (t *SimpleChaincode) update_ledger_status(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+
+
 }
 
 //=================================================================================================================================
 //	 Create Function
 //=================================================================================================================================
-//	 Create Transaction Event - Creates the initial JSON for the Transaction Event and then saves it to the ledger.
+//	 Create Settlement Ledger - Creates the initial JSON for the Settlement Ledger and then saves it to the Shared Ledger.
 //=================================================================================================================================
-func (t *SimpleChaincode) create_event(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	var tEvent TransactionEvent
+func (t *SimpleChaincode) create_ledger(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+	var ledger SettlementLedger
 	
-	tranID     			:= "\"TranID\":\""+args[0]+"\", "
-	senderName     		:= "\"SenderName\":\""+args[1]+"\", "
-	senderCountryName   := "\"SenderCountryName\":\""+args[2]+"\", "
-	receiverName     	:= "\"ReceiverName\":\""+args[3]+"\", "
-	receiverCountryName := "\"ReceiverCountryName\":\""+args[4]+"\", "
-	amount     			:= "\"Amount\":\""+args[5]+"\","
-	status     			:= "\"Status\":\""+args[6]+"\","
-	dateTime   			:= "\"DateTime\":\""+args[7]+"\","
-	depositAccountNumber:= "\"DepositAccountNumber\":\""+args[8]+"\""
+	settlementID     			:= "\"SettlementID\":\""+args[0]+"\", "
+	originatingBankName     	:= "\"OriginatingBankName\":\""+args[1]+"\", "
+	originatingAccountName      := "\"OriginatingAccountName\":\""+args[2]+"\", "
+	originatingAccountNumber    := "\"OriginatingAccountNumber\":\""+args[3]+"\", "
+	receiverBankName 			:= "\"ReceiverBankName\":\""+args[4]+"\", "
+	receiverAccountName     	:= "\"ReceiverAccountName\":\""+args[5]+"\","
+	receiverAccountNumber     	:= "\"ReceiverAccountNumber\":\""+args[6]+"\","
+	settlementAmount   			:= "\"SettlementAmount\":\""+args[7]+"\","
+	settlementDateTime			:= "\"SettlementDateTime\":\""+args[8]+"\""
+	settlementStatus			:= "\"SettlementStatus\":\""+args[9]+"\""
 
     // Concatenates the variables to create the total JSON object
-	event_json := "{"+tranID+senderName+senderCountryName+receiverName+receiverCountryName+amount+status+dateTime+depositAccountNumber+"}" 		
-	// Convert the JSON defined above into a TransactionEvent object for go
-	err := json.Unmarshal([]byte(event_json), &tEvent)										
+	event_json := "{"+settlementID+originatingBankName+originatingAccountName+originatingAccountNumber+receiverBankName+receiverAccountName+receiverAccountNumber+
+						settlementAmount+settlementDateTime+settlementStatus+"}" 	
+							
+	// Convert the JSON defined above into a SettlementLedger object for go
+	err := json.Unmarshal([]byte(event_json), &ledger)										
 	if err != nil { 
 		return nil, errors.New("Invalid JSON object") 
 	}
 
-	bytes, err := json.Marshal(tEvent)
+	bytes, err := json.Marshal(ledger)
 	if err != nil { 
-		return nil, errors.New("Error converting transaction event") 
+		return nil, errors.New("Error converting SettlementLedger") 
 	}
 
-	// Save new tran event record
-	err = stub.PutState(tEvent.TranID, bytes)
+	// Save new ledger record
+	err = stub.PutState(ledger.SettlementID, bytes)
 	if err != nil { 
-		fmt.Printf("create_event: Error storing transaction event: %s", err); 
-		return nil, errors.New("Error storing transaction event") 
+		fmt.Printf("create_event: Error storing SettlementLedger: %s", err); 
+		return nil, errors.New("Error storing SettlementLedger") 
 	}
 
-	// Update tranIDs with newly created ID and store it in chain.
-	bytes, err = stub.GetState("tranIDs")
+	// Update SettlementIDs with newly created ID and store it in chain.
+	bytes, err = stub.GetState("settlementIDs")
 	if err != nil { 
-		return nil, errors.New("Unable to get tranIDs") 
+		return nil, errors.New("Unable to get SettlementID") 
 	}
 
-	var tranHld TRAN_Holder
-	err = json.Unmarshal(bytes, &tranHld)
+	var ledgerHld Ledger_Holder
+	err = json.Unmarshal(bytes, &ledgerHld)
 	if err != nil {	
-		return nil, errors.New("Corrupt TRAN_Holder record") 
+		return nil, errors.New("Corrupt Ledger_Holder record") 
 	}
 
-	tranHld.TranIDs = append(tranHld.TranIDs, args[0])
-	bytes, err = json.Marshal(tranHld)
+	ledgerHld.SettlementIDs = append(ledgerHld.SettlementIDs, args[0])
+	bytes, err = json.Marshal(ledgerHld)
 
-	err = stub.PutState("tranIDs", bytes)
+	err = stub.PutState("settlementIDs", bytes)
 	if err != nil { 
-		fmt.Printf("create_event: Error storing TranIDs: %s", err); 
-		return nil, errors.New("Error storing TranIDs") 
+		fmt.Printf("create_event: Error storing SettlementIDs: %s", err); 
+		return nil, errors.New("Error storing SettlementIDs") 
 	}
 
 	return nil, nil 

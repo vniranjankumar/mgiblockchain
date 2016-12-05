@@ -14,18 +14,19 @@ import java.util.Date;
 public class TransactionLedgerDO {
 
 	private String settlementID;
+
+	private String originatingBankName;
+	private String originatingAccountName;
+	private String originatingAccountNumber;
+	
+	private String receiverBankName;
+	private String receiverAccountName;
+	private String receiverAccountNumber;
+	
 	private String settlementAmount;
 	private String settlementDateTime;
 	private String settlementStatus;
 
-	private String originatingAccountName;
-	private String originatingBankName;
-	private String originatingAccountNumber;
-	
-	private String receiverAccountName;
-	private String receiverBankName;
-	private String receiverAccountNumber;
-	
 	public TransactionLedgerDO(){
 		
 	}
