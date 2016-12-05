@@ -25,8 +25,10 @@ public class DataHelper {
 			return "mgiauditor";
 		}else if(username.equalsIgnoreCase("wmauditor") && password.equalsIgnoreCase("wmauditor")){
 			return "wmauditor";
-		}else if(username.equalsIgnoreCase("bmauditor") && password.equalsIgnoreCase("bmauditor")){
-			return "bmauditor";
+		}else if(username.equalsIgnoreCase("cubauditor") && password.equalsIgnoreCase("cubauditor")){
+			return "cubauditor";
+		}else if(username.equalsIgnoreCase("achauditor") && password.equalsIgnoreCase("achauditor")){
+			return "achauditor";
 		}
 		
 		return null;
@@ -45,18 +47,20 @@ public class DataHelper {
 	public static ArrayList<TransactionLedgerDO> mockTranData(String role){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		TransactionLedgerDO data1 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-26-2016 5:00PM","******2354","Sucess");
-		TransactionLedgerDO data2 = new TransactionLedgerDO("Sriram","USA","Pradeep","Mexico","50","11-27-2016 7:00PM","******2354","Sucess");
-		TransactionLedgerDO data3 = new TransactionLedgerDO("Niranjan","USA","Sankar","USA","100","11-25-2016 3:00PM","","Sucess");
-		TransactionLedgerDO data4 = new TransactionLedgerDO("Sankar","USA","Praveen","India","200","11-23-2016 1:00PM","******2354","Sucess");
-		TransactionLedgerDO data5 = new TransactionLedgerDO("Niranjan","USA","Pradeep","Mexico","100","11-23-2016 2:00PM","","Sucess");
+		TransactionLedgerDO data1 = new TransactionLedgerDO("100$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+		TransactionLedgerDO data2 = new TransactionLedgerDO("100$","Settled","MGI Business Account","US Bank","7664568765","Cub Foods Business Account","Citi","6654534234");
+		TransactionLedgerDO data3 = new TransactionLedgerDO("250$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+		TransactionLedgerDO data4 = new TransactionLedgerDO("15000$","Pending","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+
 		
 		if(role.equalsIgnoreCase("mgiauditor")){
-			dataList.add(data1);dataList.add(data2);dataList.add(data3);dataList.add(data4);dataList.add(data5);
+			dataList.add(data1);dataList.add(data2);dataList.add(data3);dataList.add(data4);
+		}else if(role.equalsIgnoreCase("cubauditor")){
+			dataList.add(data2);
 		}else if(role.equalsIgnoreCase("wmauditor")){
-			dataList.add(data3);
-		}else if(role.equalsIgnoreCase("bmauditor")){
-			dataList.add(data1);dataList.add(data2);
+			dataList.add(data1);dataList.add(data3);dataList.add(data4);
+		}else if(role.equalsIgnoreCase("achauditor")){
+			dataList.add(data1);dataList.add(data2);dataList.add(data3);dataList.add(data4);
 		}
 		
 		return dataList;
@@ -65,13 +69,15 @@ public class DataHelper {
 	public static ArrayList<MembersDO> mockMembersDO(){
 		ArrayList<MembersDO> dataList = new ArrayList<MembersDO>();
 		
-		MembersDO data1 = new MembersDO("Moneygram", "mgi.jpg", AppConstants.aboutMoneygram);
-		MembersDO data2 = new MembersDO("Walmart", "wm.jpg", AppConstants.aboutWallmart);
-		MembersDO data3 = new MembersDO("Bancomer", "bm.jpg", AppConstants.aboutBancomer);
+		MembersDO data1 = new MembersDO("Moneygram", "mgi.jpg", AppConstants.aboutMoneygram,"US Bank","7664568765");
+		MembersDO data2 = new MembersDO("Walmart", "wm.jpg", AppConstants.aboutWallmart,"BOA","5463736254");
+		MembersDO data3 = new MembersDO("Cub Foods", "cub.jpg", AppConstants.aboutCubFoods,"Citi","6654534234");
+		MembersDO data4 = new MembersDO("ACH", "ach.jpg", AppConstants.aboutACH);
 		
 		dataList.add(data1);
 		dataList.add(data2);
 		dataList.add(data3);
+		dataList.add(data4);
 		
 		return dataList;
 	}	

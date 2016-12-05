@@ -29,15 +29,17 @@ public class BlockChainImpl implements BlockChainService {
 	private static String chaincodeURL = "https://e4229cbb71ae4d7a8730530346055d41-vp0.us.blockchain.ibm.com:5002/chaincode";
 	
 	public boolean insertTranData(TransactionLedgerDO dataDO){
-		String data = "\""+ dataDO.getTranID() +"\","+
-				      "\""+ dataDO.getSenderName() +"\","+
-				      "\""+ dataDO.getSenderCountryName() +"\","+
-				      "\""+ dataDO.getReceiverName() +"\","+
-				      "\""+ dataDO.getReceiverCountryName() +"\","+
-				      "\""+ dataDO.getAmount() +"\","+
-				      "\""+ dataDO.getStatus() +"\","+
-				      "\""+ dataDO.getDateTime() +"\","+
-				      "\""+ dataDO.getDepositAccountNumber() +"\"";
+		String data = "\""+ dataDO.getSettlementID() +"\","+
+				      "\""+ dataDO.getOriginatingBankName() +"\","+
+				      "\""+ dataDO.getOriginatingAccountName() +"\","+
+				      "\""+ dataDO.getOriginatingAccountNumber() +"\","+
+				      "\""+ dataDO.getReceiverBankName() +"\","+
+				      "\""+ dataDO.getReceiverAccountName() +"\","+
+					  "\""+ dataDO.getReceiverAccountNumber() +"\","+
+				      "\""+ dataDO.getSettlementAmount() +"\","+
+				      "\""+ dataDO.getSettlementDateTime() +"\","+
+				      "\""+ dataDO.getSettlementStatus() +"\"";
+		
 		String req = buildJsonRequest("WebAppAdmin", "invoke", "create_event", data);
 		String jsonInString = callBlockChainAPI("POST", req);
 		if(jsonInString.contains("\"status\":\"OK\""))
