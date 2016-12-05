@@ -13,6 +13,8 @@ import com.database.TransactionLedgerDO;
  */
 public interface BlockChainService {
 	
-	public ArrayList<TransactionLedgerDO> queryTranData();
+	public boolean insertLedger(TransactionLedgerDO dataDO);
+	public ArrayList<TransactionLedgerDO> queryLedgers();
+	public boolean updateStatus(String settlementID, String status);
 
 }

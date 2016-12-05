@@ -37,7 +37,7 @@ public class DataHelper {
 	public static ArrayList<TransactionLedgerDO> getTranData(String role){
 		if(!AppConstants.useMockData){			
 			BlockChainService chainService = new BlockChainImpl();
-			return chainService.queryTranData();
+			return chainService.queryLedgers();
 		}else{
 			//TODO: Remove below mock data call once, Above blockchain service code is working.
 			return mockTranData(role);

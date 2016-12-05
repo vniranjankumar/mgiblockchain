@@ -28,7 +28,7 @@ public class BlockChainImpl implements BlockChainService {
 	private static String chaincodeID = "86a12ae10a5b75eb1818de5f876e567e917b7d7b21d44822e65c0a6642d2fc88f112fc141aee7a2532b75d94a9da8f85483d28014e0f6d1416f6bf733cb071b3";	
 	private static String chaincodeURL = "https://e4229cbb71ae4d7a8730530346055d41-vp0.us.blockchain.ibm.com:5002/chaincode";
 	
-	public boolean insertTranData(TransactionLedgerDO dataDO){
+	public boolean insertLedger(TransactionLedgerDO dataDO){
 		String data = "\""+ dataDO.getSettlementID() +"\","+
 				      "\""+ dataDO.getOriginatingBankName() +"\","+
 				      "\""+ dataDO.getOriginatingAccountName() +"\","+
@@ -40,7 +40,7 @@ public class BlockChainImpl implements BlockChainService {
 				      "\""+ dataDO.getSettlementDateTime() +"\","+
 				      "\""+ dataDO.getSettlementStatus() +"\"";
 		
-		String req = buildJsonRequest("WebAppAdmin", "invoke", "create_event", data);
+		String req = buildJsonRequest("WebAppAdmin", "invoke", "create_ledger", data);
 		String jsonInString = callBlockChainAPI("POST", req);
 		if(jsonInString.contains("\"status\":\"OK\""))
 			return true;
@@ -48,10 +48,10 @@ public class BlockChainImpl implements BlockChainService {
 			return false;
 	}
 	
-	public ArrayList<TransactionLedgerDO> queryTranData(){
+	public ArrayList<TransactionLedgerDO> queryLedgers(){
 		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		
-		String req = buildJsonRequest("WebAppAdmin", "query", "get_events", "");
+		String req = buildJsonRequest("WebAppAdmin", "query", "get_ledgers", "");
 		String jsonInString = callBlockChainAPI("POST", req);
 		jsonInString = jsonInString.substring(jsonInString.indexOf("message")+10,jsonInString.indexOf("\"},\"id"));
 		jsonInString = jsonInString.replaceAll("\\\\","");
@@ -70,7 +70,15 @@ public class BlockChainImpl implements BlockChainService {
 		return dataList;
 	}
 	
-	
+	public boolean updateStatus(String settlementID, String status){
+		String data = "\""+ settlementID +"\","+
+			          "\""+ status +"\"";
+		
+		String req = buildJsonRequest("WebAppAdmin", "invoke", "update_ledger_status", data);
+		String jsonInString = callBlockChainAPI("POST", req);
+		
+		return true;
+	}
 	
 	private static String callBlockChainAPI(String httpMethod, String jsonRequest){
 		String output = "";
@@ -144,11 +152,7 @@ public class BlockChainImpl implements BlockChainService {
 	
 	public static void main(String[] args){
 		
-		TransactionLedgerDO data1 = new TransactionLedgerDO("Hari","USA","Arasu","Mexico","100","11-26-2016 5:00PM","******2354","Sucess");
 		
-		BlockChainImpl obj = new BlockChainImpl();
-		//obj.queryTranData();
-		obj.insertTranData(data1);
-		
+		BlockChainImpl obj = new BlockChainImpl();		
 	}
 }
