@@ -186,6 +186,8 @@ func (t *SimpleChaincode) update_ledger_status(stub shim.ChaincodeStubInterface,
 		return nil, errors.New("QUERY: Error retrieving settlementID "+err.Error()) 
 	}
 	
+	ledger.SettlementStatus = args[1];
+	
 	return nil, nil;
 }
 
