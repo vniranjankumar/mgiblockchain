@@ -3,14 +3,24 @@
  */
 package com.action;
 
+import java.io.StringReader;
+
 import com.database.DataHelper;
+import com.database.TransactionLedgerDO;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+
+
 /**
  * @author Niranjan
  *
  */
 import com.opensymphony.xwork2.Action;
 
-public class ViewChainAction implements Action {
+public class ChainSimulatorAction implements Action {
 	
 	//Java Bean to hold the form parameters
     private String chainId;
@@ -76,19 +86,34 @@ public class ViewChainAction implements Action {
 	
 	@Override
     public String execute() throws Exception {
-    	System.out.println("Entered execute method ====");
         return "SUCCESS";
     }	
 
 
 	public String publishTransaction() throws Exception {
-    	DataHelper.publishTransaction(getTransactionXML());
+		TransactionLedgerDO transactionLedger = unmarshallTransactionXML (getTransactionXML()) ;
+		DataHelper.publishTransaction(transactionLedger);
         return "SUCCESS";
     }
     
     public String publishACHTransaction() throws Exception {
-    	DataHelper.publishACHTransaction(getAchXML());
+    	TransactionLedgerDO achSettlementLedger = unmarshallTransactionXML (getAchXML()) ;
+    	DataHelper.publishACHTransaction(achSettlementLedger);
         return "SUCCESS";
+    }
+    
+    public TransactionLedgerDO unmarshallTransactionXML(String transactionXML) throws Exception {
+    	TransactionLedgerDO transactionLedger = null ;
+    	try {
+    		
+    		JAXBContext jaxbContext = JAXBContext.newInstance(TransactionLedgerDO.class);
+    		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+    		StringReader reader = new StringReader(transactionXML);
+    		transactionLedger = (TransactionLedgerDO) unmarshaller.unmarshal(reader);
+    	}catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    	return transactionLedger;
     }
 
 }
