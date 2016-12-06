@@ -25,7 +25,10 @@
 		<action name="viewchain" class="com.action.ViewChainAction">
 			<result name="SUCCESS">viewchain.jsp</result>
 		</action>		
-		<action name="publishEvent" method="publishTransaction" class="com.action.ViewChainAction">
+		<action name="publishTransactionEvent" method="publishTransaction" class="com.action.ViewChainAction">
+			<result name="SUCCESS">viewchain.jsp</result>
+		</action>
+		<action name="publishACHEvent" method="publishACHTransaction" class="com.action.ViewChainAction">
 			<result name="SUCCESS">viewchain.jsp</result>
 		</action>
 	</package>

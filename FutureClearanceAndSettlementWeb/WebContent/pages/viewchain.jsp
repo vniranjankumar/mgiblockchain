@@ -78,7 +78,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                                <s:if test="%{#session.login ==true}">
 	                                	 <s:if test="%{#session.role =='caadmin'}">
 		                                	<li><a href="members.action">Group Members</a></li>
-		                                	<li><a href="viewchain.action">View Chain</a></li>
+		                                	<li><a href="viewchain.action">Chain Simulator</a></li>
 		                                 </s:if>
 		                              	 <s:if test="%{#session.role !='caadmin'}">
 		                              		<li><a href="audit.action">Audit Ledger</a></li>
@@ -98,25 +98,21 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
             <div class="row">
             	<div class="col-md-12">
             		<div class="product-holder">
-		            	<div id ="viewchainform" class="form-style-5 full-row" >					
-							<%-- <s:form action="updateChainID">
+		            	<div id ="viewchainform" class="form-style-5 full-row" >							
+							<s:form action="publishTransactionEvent">
 								<fieldset>
-									<s:textfield name="chainId" label="Chain ID" placeholder="Chain ID"></s:textfield>
-									<s:submit value="Apply" style="float:right"></s:submit>
-								</fieldset>
-							</s:form> --%>
-							
-							<%-- <s:form action="updateChainUrl">
-								<fieldset>
-									<s:textfield name="chainUrl" label="Chain URL" placeholder="Chain URL"></s:textfield>
-									<s:submit value="Apply" style="float:right"></s:submit>
-								</fieldset>
-							</s:form> --%>
-							
-							<s:form action="publishEvent">
-								<fieldset>
-									<legend>Chain Properties</legend>
+									<legend>Transaction Simulator</legend>
 									<s:textarea name="transactionXML" label="Transaction XML" cols="150" rows="15"/>
+									<s:submit value="Submit"></s:submit>							
+								</fieldset>
+							</s:form>
+						</div>	<!-- form-style-5 full-row -->
+						<br/>
+						<div id ="viewchainform" class="form-style-5 full-row" >							
+							<s:form action="publishACHEvent">
+								<fieldset>
+									<legend>ACH Simulator</legend>
+									<s:textarea name="achXML" label="ACH XML" cols="150" rows="15"/>
 									<s:submit value="Submit"></s:submit>							
 								</fieldset>
 							</s:form>
