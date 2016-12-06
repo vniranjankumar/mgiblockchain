@@ -82,7 +82,11 @@ public class DataHelper {
 	}	
 	
 	public static void publishTransaction(String transactionXML) {
-		System.out.println("Submitted Transaction XML = "+transactionXML);
+		System.out.println("Submitted Transaction Simulator XML = "+transactionXML);
+	}
+	
+	public static void publishACHTransaction(String transactionXML) {
+		System.out.println("Submitted ACH Simulator XML = "+transactionXML);
 	}
 
 }

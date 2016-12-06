@@ -78,7 +78,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                                <s:if test="%{#session.login ==true}">
 	                                	 <s:if test="%{#session.role =='caadmin'}">
 		                                	<li><a href="members.action">Group Members</a></li>
-		                                	<li><a href="viewchain.action">View Chain</a></li>
+		                                	<li><a href="viewchain.action">Chain Simulator</a></li>
 		                                 </s:if>
 		                              	 <s:if test="%{#session.role !='caadmin'}">
 		                              		<li><a href="audit.action">Audit Ledger</a></li>
@@ -108,6 +108,12 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						      </div>
 						      <div class="membersCell">
 						        Member Details
+						      </div>
+						      <div class="membersCell">
+						        Bank Name
+						      </div>
+						      <div class="membersCell">
+						        Bank Account Number
 						      </div>						      
 						    </div>	
 						     <!-- Dummy data will be removed when integrated with JSP changes -->					    
@@ -122,6 +128,12 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 								      </div>
 								      <div class="membersCell">
 								        	<s:property value="memberDetails"/>
+								      </div>
+								      <div class="membersCell">
+								        	<s:property value="bankName"/>
+								      </div>
+								      <div class="membersCell">
+								        	<s:property value="bankAccountNumber"/>
 								      </div>								      
 								 </div>
 						    </s:iterator>					    

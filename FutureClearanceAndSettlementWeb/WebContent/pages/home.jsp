@@ -86,7 +86,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                                	<li><a href="home.action">Home</a></li>	                                
 	                                	 <s:if test="%{#session.role =='caadmin'}">
 		                                	<li><a href="members.action">Group Members</a></li>
-		                                	<li><a href="viewchain.action">View Chain</a></li>
+		                                	<li><a href="viewchain.action">Chain Simulator</a></li>
 		                                 </s:if>
 		                              	 <s:if test="%{#session.role !='caadmin'}">
 		                              		<li><a href="audit.action">Audit Ledger</a></li>
