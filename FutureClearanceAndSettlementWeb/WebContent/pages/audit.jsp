@@ -102,6 +102,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						  <div class="membersTable">						    
 						    <div class="membersTableheader">
 						      <div class="membersCell">
+						        Settlement ID
+						      </div>
+						      <div class="membersCell">
 						        Settlement Amount
 						      </div>
 						      <div class="membersCell">
@@ -129,6 +132,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						    <!-- Dummy data will be removed when integrated with JSP changes -->						    
 						    <s:iterator value="transactionList">
 						    	<div class="membersRow">
+						    		  <div class="membersCell">
+								        	<s:property value="settlementID"/> 
+								      </div>
 								      <div class="membersCell">
 								        	<s:property value="settlementAmount"/> 
 								      </div>
