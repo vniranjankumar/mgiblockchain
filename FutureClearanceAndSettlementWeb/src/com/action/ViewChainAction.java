@@ -16,6 +16,7 @@ public class ViewChainAction implements Action {
     private String chainId;
     private String chainUrl;
     private String transactionXML;
+    private String achXML;
 
     /**
 	 * @return the chainId
@@ -58,15 +59,35 @@ public class ViewChainAction implements Action {
 	public void setTransactionXML(String transactionXML) {
 		this.transactionXML = transactionXML;
 	}
+	
+    /**
+	 * @return the achXML
+	 */
+	public String getAchXML() {
+		return achXML;
+	}
 
+	/**
+	 * @param achXML the achXML to set
+	 */
+	public void setAchXML(String achXML) {
+		this.achXML = achXML;
+	}
+	
 	@Override
     public String execute() throws Exception {
     	System.out.println("Entered execute method ====");
         return "SUCCESS";
-    }
-	
-    public String publishTransaction() throws Exception {
+    }	
+
+
+	public String publishTransaction() throws Exception {
     	DataHelper.publishTransaction(getTransactionXML());
+        return "SUCCESS";
+    }
+    
+    public String publishACHTransaction() throws Exception {
+    	DataHelper.publishACHTransaction(getAchXML());
         return "SUCCESS";
     }
 

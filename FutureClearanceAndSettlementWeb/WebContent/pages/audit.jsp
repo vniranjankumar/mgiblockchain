@@ -79,7 +79,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                                <s:if test="%{#session.login ==true}">
 	                                	 <s:if test="%{#session.role =='caadmin'}">
 		                                	<li><a href="members.action">Group Members</a></li>
-		                                	<li><a href="viewchain.action">View Chain</a></li>
+		                                	<li><a href="viewchain.action">Chain Simulator</a></li>
 		                                 </s:if>
 		                              	 <s:if test="%{#session.role !='caadmin'}">
 		                              		<li><a href="audit.action">Audit Ledger</a></li>
@@ -102,56 +102,56 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						  <div class="membersTable">						    
 						    <div class="membersTableheader">
 						      <div class="membersCell">
-						        Sender Name
+						        Settlement Amount
 						      </div>
 						      <div class="membersCell">
-						        Sender Country
+						        Settlement Status
 						      </div>
 						      <div class="membersCell">
-						        Receiver Name
+						        Originating Account Name
 						      </div>
 						      <div class="membersCell">
-						        Receiver Country
+						        Originating Bank Name
 						      </div>
 						      <div class="membersCell">
-						        Amount
+						        Originating Account Number
 						      </div>
 						      <div class="membersCell">
-						        Date Time
+						        Receiver Account Name
 						      </div>
 						      <div class="membersCell">
-						        Deposit Account Number
+						        Receiver Bank Name
 						      </div>
 						      <div class="membersCell">
-						        Status
+						        Receiver Account Number
 						      </div>						      
 						    </div>
 						    <!-- Dummy data will be removed when integrated with JSP changes -->						    
 						    <s:iterator value="transactionList">
 						    	<div class="membersRow">
 								      <div class="membersCell">
-								        	<s:property value="senderName"/> 
+								        	<s:property value="settlementAmount"/> 
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="senderCountryName"/>
+								        	<s:property value="settlementStatus"/>
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="receiverName"/>
+								        	<s:property value="originatingAccountName"/>
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="receiverCountryName"/> 
+								        	<s:property value="originatingBankName"/> 
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="amount"/>
+								        	<s:property value="originatingAccountNumber"/>
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="dateTime"/>
+								        	<s:property value="receiverAccountName"/>
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="depositAccountNumber"/>
+								        	<s:property value="receiverBankName"/>
 								      </div>
 								      <div class="membersCell">
-								        	<s:property value="status"/>
+								        	<s:property value="receiverAccountNumber"/>
 								      </div>											      
 								 </div>
 						    </s:iterator>					    
