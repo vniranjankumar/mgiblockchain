@@ -40,7 +40,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                     <div class="col-md-6 col-sm-6">                        
                         <s:if test="%{#session.login ==true}">  
 	                        <div class="top-header-left">
-	                            <a href="logout.action">Log Out</a>
+	                            <a href="logout.action">Log Out ( <s:property value="#session.role"/> )</a>
 	                        </div> <!-- /.top-header-left -->
                          </s:if>
                         <s:else>

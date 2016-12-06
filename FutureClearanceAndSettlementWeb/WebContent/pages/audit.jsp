@@ -40,7 +40,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
 						<div class="top-header-left">
-	                         <a href="logout.action">Log Out</a>
+	                         <a href="logout.action">Log Out ( <s:property value="#session.role"/> )</a>
 	                    </div> <!-- /.top-header-left --> 
                     </div> <!-- /.col-md-6 -->
                     <div class="col-md-6 col-sm-6">
