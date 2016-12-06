@@ -10,7 +10,7 @@ Kool Store Template
 http://www.templatemo.com/preview/templatemo_428_kool_store
 -->
     <meta charset="utf-8">
-    <title>Future Clearing and Settlement Group</title>
+    <title>Future Clearing and Settlement House</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -61,7 +61,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                 <div class="row">
                     <div class="col-md-12 col-xs-8">
                         <div class="logo">
-                            <h1><a href="home.action">Future Clearing and Settlement Group</a></h1>
+                            <h1><a href="home.action">Future Clearing and Settlement House</a></h1>
                         </div> <!-- /.logo -->
                     </div> <!-- /.col-md-4 -->
                    
@@ -132,7 +132,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
          <div class="container">
              <div class="row">
                  <div class="col-md-12 text-center">
-                     <span>Copyright &copy; 2016 <a href="home.action">FUTURE CLEARING AND SETTLEMENT GROUP</a></span>
+                     <span>Copyright &copy; 2016 <a href="home.action">FUTURE CLEARING AND SETTLEMENT HOUSE</a></span>
                  </div> <!-- /.col-md-12 -->
              </div> <!-- /.row -->
          </div> <!-- /.container -->
