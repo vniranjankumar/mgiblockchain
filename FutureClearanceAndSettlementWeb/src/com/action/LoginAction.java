@@ -64,7 +64,8 @@ public class LoginAction extends ActionSupport implements Action, SessionAware{
     @Override
     public String execute() throws Exception {
     	if (validateLogin(getUsername(),getPassword())){
-           	addActionMessage("Welcome user!");
+           	//Commenting welcome message for now
+    		//addActionMessage("Welcome user!");
            	sessionMap.put("login",true); 		
            	return "SUCCESS";
         }            

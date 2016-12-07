@@ -40,7 +40,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                     <div class="col-md-6 col-sm-6">                        
                         <s:if test="%{#session.login ==true}">  
 	                        <div class="top-header-left">
-	                            <a href="logout.action">Log Out</a>
+	                            <a href="logout.action">Log Out ( <s:property value="#session.role"/> )</a>
 	                        </div> <!-- /.top-header-left -->
                          </s:if>
                         <s:else>
@@ -117,9 +117,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                            <img src="images/blockchain_image3.jpg" alt="Product Title">
 	                        </div> <!-- /.product-thumb -->
 	                        <div class="product-content overlay">
-                                <h5><a href="#">Heading</a></h5>
-                                <span class="tagline">Tag line</span>                                
-                                <p>Add Content about the technology and applicaion</p>
+                                <h5><a href="#">Block Chain</a></h5>
+                                <span class="tagline">Decentralization</span>                                
+                                <p>By storing data across its network, the blockchain eliminates the risks that come with data being held centrally.Decentralised blockchains may use ad-hoc message passing and distributed networking. Its network lacks centralized points of vulnerability that computer hackers can exploit or any central point of failure.</p>
 	                         </div> <!-- /.product-content-overlay -->
 	                    </div> <!-- /.product-item -->
 	                </s:if>
@@ -132,9 +132,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 	                                <img src="images/blockchain_image2.jpg" alt="Product Title">
 	                            </div> <!-- /.product-thumb -->
 	                            <div class="product-content overlay">
-	                                <h5><a href="#">Heading</a></h5>
-	                                <span class="tagline">Tag line</span>	                                
-	                                <p>Add Content about the technology and applicaion</p>
+	                                <h5><a href="#">Block Chain</a></h5>
+	                                <span class="tagline">Security Aspects</span>	                                
+	                                <p>Blockchain is a secured way of online transaction.This is a decentralized digital ledger that records transactions on thousands of computers globally.Security methods include the use of public-key cryptography.A public key is an address on the blockchain.Data stored on the blockchain is generally considered incorruptible.</p>
 	                            </div> <!-- /.product-content -->
 	                        </div> <!-- /.product-item-2 -->	                       
 	                        <div class="clearfix"></div>
@@ -167,9 +167,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 		                            <img src="images/blockchain_image1.jpg" alt="">
 		                        </div> <!-- /.product-thumb -->
 		                        <div class="product-content overlay">
-	                                <h5><a href="#">Heading</a></h5>
-	                                <span class="tagline">Tag line</span>	                                
-	                                <p>Add Content about the technology and applicaion</p>
+	                                <h5><a href="#">Block Chain</a></h5>
+	                                <span class="tagline">Charateristics</span>	                                
+	                                <p>This is a distributed database that maintains a continuously-growing list of ordered records called blocks. Each block contains a timestamp and a link to a previous block.By design blockchains are inherently resistant to modification of the data - once recorded, the data in a block cannot be altered retrospectively.</p>
 		                         </div> <!-- /.product-content-overlay -->		                                     	
 							</s:if>							
 	                    </div> <!-- /.product-item-2 -->

@@ -40,7 +40,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
 						<div class="top-header-left">
-	                         <a href="logout.action">Log Out</a>
+	                         <a href="logout.action">Log Out ( <s:property value="#session.role"/> )</a>
 	                    </div> <!-- /.top-header-left --> 
                     </div> <!-- /.col-md-6 -->
                     <div class="col-md-6 col-sm-6">
@@ -102,6 +102,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						  <div class="membersTable">						    
 						    <div class="membersTableheader">
 						      <div class="membersCell">
+						        Settlement ID
+						      </div>
+						      <div class="membersCell">
 						        Settlement Amount
 						      </div>
 						      <div class="membersCell">
@@ -129,6 +132,9 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 						    <!-- Dummy data will be removed when integrated with JSP changes -->						    
 						    <s:iterator value="transactionList">
 						    	<div class="membersRow">
+						    		  <div class="membersCell">
+								        	<s:property value="settlementID"/> 
+								      </div>
 								      <div class="membersCell">
 								        	<s:property value="settlementAmount"/> 
 								      </div>
