@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SettlementLedger>
-    <settlementID>12345</settlementID>
     <originatingBankName>MGI Business Account</originatingBankName>
     <originatingAccountName>US Bank</originatingAccountName>
     <originatingAccountNumber>7664568765</originatingAccountNumber>
@@ -8,6 +7,5 @@
     <receiverAccountName>Citi</receiverAccountName>
     <receiverAccountNumber>6654534234</receiverAccountNumber>
     <settlementAmount>555$</settlementAmount>
-    <settlementDateTime>12-06-2016 12:28:30</settlementDateTime>
     <settlementStatus>Settled</settlementStatus>
 </SettlementLedger>

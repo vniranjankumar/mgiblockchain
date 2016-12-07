@@ -91,7 +91,11 @@ public class ChainSimulatorAction implements Action {
 
 
 	public String publishTransaction() throws Exception {
-		TransactionLedgerDO transactionLedger = unmarshallTransactionXML (getTransactionXML()) ;
+		TransactionLedgerDO transactionXML = unmarshallTransactionXML (getTransactionXML()) ;
+		// Converting transaction XML to transaction Ledger Object .
+		TransactionLedgerDO transactionLedger = new TransactionLedgerDO(transactionXML.getSettlementAmount(), transactionXML.getSettlementStatus(), 
+				transactionXML.getOriginatingAccountName(), transactionXML.getOriginatingBankName(), transactionXML.getOriginatingAccountNumber(),
+				transactionXML.getReceiverAccountName() , transactionXML.getReceiverBankName(), transactionXML.getReceiverAccountNumber());
 		DataHelper.publishTransaction(transactionLedger);
         return "SUCCESS";
     }
