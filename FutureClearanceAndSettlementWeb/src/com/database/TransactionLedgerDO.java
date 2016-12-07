@@ -6,11 +6,12 @@ package com.database;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import javax.xml.bind.annotation.*;
 /**
  * @author Niranjan
  *
  */
+@XmlRootElement(name = "SettlementLedger")
 public class TransactionLedgerDO {
 
 	private String settlementID;

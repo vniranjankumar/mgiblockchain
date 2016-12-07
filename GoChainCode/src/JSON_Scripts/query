@@ -4,10 +4,10 @@
   "params": {
     "type": 1,
     "chaincodeID": {
-      "name": "3860477d5aacb38ffa891be33f9a5478cb98e73317ad11c69531a900d08855fab05c686686c6f016fb13990767a80f1443b3ce6bd3e39204a72439703746afe4"
+      "name": "eda0d32845fa893cf64989ec822529351f408939f73b396c25f4a70cb0a53d553b81c3d2fa0316047512d954664fc7e6405e77e432887e0f7c643db9e1dc514b"
     },
     "ctorMsg": {
-      "function": "get_events",
+      "function": "get_ledgers",
       "args": [
         "123"
       ]

@@ -4,10 +4,10 @@
   "params": {
     "type": 1,
     "chaincodeID": {
-      "name": "86a12ae10a5b75eb1818de5f876e567e917b7d7b21d44822e65c0a6642d2fc88f112fc141aee7a2532b75d94a9da8f85483d28014e0f6d1416f6bf733cb071b3"
+      "name": "eda0d32845fa893cf64989ec822529351f408939f73b396c25f4a70cb0a53d553b81c3d2fa0316047512d954664fc7e6405e77e432887e0f7c643db9e1dc514b"
     },
     "ctorMsg": {
-      "function": "create_event",
+      "function": "create_ledger",
       "args": [
         "3", "Sriram","USA", "Sankar","USA","100$", "Deposited","12/1/2016 5 PM","****3654"
       ]

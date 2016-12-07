@@ -22,14 +22,14 @@
 		<action name="members" class="com.action.ParticipantsAction">
 			<result name="SUCCESS">members.jsp</result>
 		</action>
-		<action name="viewchain" class="com.action.ViewChainAction">
-			<result name="SUCCESS">viewchain.jsp</result>
+		<action name="viewchain" class="com.action.ChainSimulatorAction">
+			<result name="SUCCESS">chainsimulator.jsp</result>
 		</action>		
-		<action name="publishTransactionEvent" method="publishTransaction" class="com.action.ViewChainAction">
-			<result name="SUCCESS">viewchain.jsp</result>
+		<action name="publishTransactionEvent" method="publishTransaction" class="com.action.ChainSimulatorAction">
+			<result name="SUCCESS">chainsimulator.jsp</result>
 		</action>
-		<action name="publishACHEvent" method="publishACHTransaction" class="com.action.ViewChainAction">
-			<result name="SUCCESS">viewchain.jsp</result>
+		<action name="publishACHEvent" method="publishACHTransaction" class="com.action.ChainSimulatorAction">
+			<result name="SUCCESS">chainsimulator.jsp</result>
 		</action>
 	</package>
 

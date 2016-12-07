@@ -81,12 +81,12 @@ public class DataHelper {
 		return dataList;
 	}	
 	
-	public static void publishTransaction(String transactionXML) {
-		System.out.println("Submitted Transaction Simulator XML = "+transactionXML);
+	public static void publishTransaction(TransactionLedgerDO transaction) {
+		System.out.println("Submitted Transaction Simulator XML = "+transaction.toString());
 	}
 	
-	public static void publishACHTransaction(String transactionXML) {
-		System.out.println("Submitted ACH Simulator XML = "+transactionXML);
+	public static void publishACHTransaction(TransactionLedgerDO achSettlementLedger) {
+		System.out.println("Submitted ACH Simulator XML = "+achSettlementLedger.toString());
 	}
 
 }

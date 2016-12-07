@@ -25,8 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BlockChainImpl implements BlockChainService {
 	
-	private static String chaincodeID = "55ca480f56bd2ef525cbb87e16599b63bb30a534d877b42c9ff3e0d2690695e24b89d0ebda8a391fc42b434bf3bcca13d12e9ac7cc01f7173e340568dda96f02";	
-	private static String chaincodeURL = "https://fb64dd9844a846289a7c426c55348f9b-vp0.us.blockchain.ibm.com:5002/chaincode";
+	private static String chaincodeID = "eda0d32845fa893cf64989ec822529351f408939f73b396c25f4a70cb0a53d553b81c3d2fa0316047512d954664fc7e6405e77e432887e0f7c643db9e1dc514b";	
+	private static String chaincodeURL = "https://a47ec86a863e46b9a64c94761bd98c9e-vp0.us.blockchain.ibm.com:5003/chaincode";
 	
 	public boolean insertLedger(TransactionLedgerDO dataDO){
 		String data = "\""+ dataDO.getSettlementID() +"\","+
