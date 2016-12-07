@@ -47,7 +47,7 @@ public class BlockChainImpl implements BlockChainService {
 					  "\""+ dataDO.getReceiverAccountNumber() +"\","+
 				      "\""+ dataDO.getSettlementAmount() +"\","+
 				      "\""+ dataDO.getSettlementDateTime() +"\","+
-				      "\""+ dataDO.getSettlementStatus() +"\"";
+				      "\""+ status +"\"";
 		
 		String req = buildJsonRequest("WebAppAdmin", "invoke", "create_ledger", data);
 		String jsonInString = callBlockChainAPI("POST", req);
