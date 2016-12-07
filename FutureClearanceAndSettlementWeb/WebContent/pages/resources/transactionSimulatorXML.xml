@@ -7,5 +7,4 @@
     <receiverAccountName>Citi</receiverAccountName>
     <receiverAccountNumber>6654534234</receiverAccountNumber>
     <settlementAmount>555$</settlementAmount>
-    <settlementStatus>Settled</settlementStatus>
 </SettlementLedger>
