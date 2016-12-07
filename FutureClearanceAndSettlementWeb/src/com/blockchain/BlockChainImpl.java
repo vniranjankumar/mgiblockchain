@@ -25,8 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BlockChainImpl implements BlockChainService {
 	
-	private static String chaincodeID = "eda0d32845fa893cf64989ec822529351f408939f73b396c25f4a70cb0a53d553b81c3d2fa0316047512d954664fc7e6405e77e432887e0f7c643db9e1dc514b";	
-	private static String chaincodeURL = "https://a47ec86a863e46b9a64c94761bd98c9e-vp0.us.blockchain.ibm.com:5003/chaincode";
+	private static String chaincodeID = "27d9aa4007c5dfeb41accc50f9061472f97a799f65e08121bb238ea5a0d53b37ab141c63c4d8734be959befb4fd21bbcd5e8ffb14a72a8998150cd18cb58ccd2";	
+	private static String chaincodeURL = "https://a7d850c513304ad682e2d453f0ed1538-vp0.us.blockchain.ibm.com:5003/chaincode";
 	
 	public boolean insertLedger(TransactionLedgerDO dataDO){
 		String data = "\""+ dataDO.getSettlementID() +"\","+
@@ -152,10 +152,19 @@ public class BlockChainImpl implements BlockChainService {
 	
 	public static void main(String[] args){
 		
-		TransactionLedgerDO data1 = new TransactionLedgerDO("100$","Settled","MGI Business Account","US Bank","7664568765","Cub Foods Business Account","Citi","6654534234");
+		// Demo Purpose...
+		TransactionLedgerDO data1 = new TransactionLedgerDO("100$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+		TransactionLedgerDO data2 = new TransactionLedgerDO("100$","Settled","MGI Business Account","US Bank","7664568765","Cub Foods Business Account","Citi","6654534234");
+		TransactionLedgerDO data3 = new TransactionLedgerDO("250$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+		TransactionLedgerDO data4 = new TransactionLedgerDO("15000$","Pending","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
 
 		BlockChainImpl obj = new BlockChainImpl();	
 		//obj.insertLedger(data1);
+		obj.insertLedger(data2);
+		obj.insertLedger(data3);
+		obj.insertLedger(data4);
+		
+		
 		ArrayList<TransactionLedgerDO> temp = obj.queryLedgers();
 		System.out.println(temp.size());
 		
