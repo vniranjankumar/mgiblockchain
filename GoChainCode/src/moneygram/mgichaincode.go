@@ -182,11 +182,23 @@ func (t *SimpleChaincode) update_ledger_status(stub shim.ChaincodeStubInterface,
 
 	ledger, err := t.retrieve_ledger(stub, args[0])
 	if err != nil { 
-		fmt.Printf("QUERY: Error retrieving settlementID: %s", err); 
-		return nil, errors.New("QUERY: Error retrieving settlementID "+err.Error()) 
+		fmt.Printf("update_ledger_status: Error retrieving settlementID: %s", err); 
+		return nil, errors.New("update_ledger_status: Error retrieving settlementID "+err.Error()) 
 	}
 	
 	ledger.SettlementStatus = args[1];
+	
+	bytes, err := json.Marshal(ledger)
+	if err != nil { 
+		return nil, errors.New("Error converting SettlementLedger") 
+	}
+
+	// Save new ledger record
+	err = stub.PutState(ledger.SettlementID, bytes)
+	if err != nil { 
+		fmt.Printf("update_ledger_status: Error storing SettlementLedger: %s", err); 
+		return nil, errors.New("Error storing SettlementLedger") 
+	}
 	
 	return nil, nil;
 }

@@ -4,6 +4,7 @@
 package com.database;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.blockchain.BlockChainImpl;
 import com.blockchain.BlockChainService;
@@ -34,9 +35,28 @@ public class DataHelper {
 	}
 	
 	public static ArrayList<TransactionLedgerDO> getTranData(String role){
+		ArrayList<TransactionLedgerDO> dataList = new ArrayList<TransactionLedgerDO>();
 		if(!AppConstants.useMockData){			
 			BlockChainService chainService = new BlockChainImpl();
-			return chainService.queryLedgers();
+			ArrayList<TransactionLedgerDO> tempList = chainService.queryLedgers();
+			// Filter data based on role.
+			for (Iterator iterator = tempList.iterator(); iterator.hasNext();) {
+				TransactionLedgerDO transactionLedgerDO = (TransactionLedgerDO) iterator.next();
+				if(role.equalsIgnoreCase("wmauditor")){
+					if(transactionLedgerDO.getOriginatingAccountName().equalsIgnoreCase("Walmart Business Account")
+							|| transactionLedgerDO.getReceiverAccountName().equalsIgnoreCase("Walmart Business Account")){
+						dataList.add(transactionLedgerDO);
+					}
+				}else if(role.equalsIgnoreCase("cubauditor")){
+					if(transactionLedgerDO.getOriginatingAccountName().equalsIgnoreCase("Cub Foods Business Account")
+							|| transactionLedgerDO.getReceiverAccountName().equalsIgnoreCase("Cub Foods Business Account")){
+						dataList.add(transactionLedgerDO);
+					}
+				}else{
+					dataList.add(transactionLedgerDO);
+				}
+			}
+			return dataList;
 		}else{
 			return mockTranData(role);
 		}		
