@@ -29,6 +29,14 @@ public class BlockChainImpl implements BlockChainService {
 	private static String chaincodeURL = "https://a7d850c513304ad682e2d453f0ed1538-vp0.us.blockchain.ibm.com:5003/chaincode";
 	
 	public boolean insertLedger(TransactionLedgerDO dataDO){
+		
+		String status = "";
+		if(Integer.parseInt(dataDO.getSettlementAmount()) > 10000){
+			status = "Pending";
+		}else{
+			status = "Settled";
+		}
+		
 		String data = "\""+ dataDO.getSettlementID() +"\","+
 				      "\""+ dataDO.getOriginatingBankName() +"\","+
 				      "\""+ dataDO.getOriginatingAccountName() +"\","+
@@ -159,7 +167,7 @@ public class BlockChainImpl implements BlockChainService {
 		TransactionLedgerDO data4 = new TransactionLedgerDO("15000$","Pending","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
 
 		BlockChainImpl obj = new BlockChainImpl();	
-		//obj.insertLedger(data1);
+		obj.insertLedger(data1);
 		obj.insertLedger(data2);
 		obj.insertLedger(data3);
 		obj.insertLedger(data4);

@@ -82,10 +82,18 @@ public class DataHelper {
 	
 	public static void publishTransaction(TransactionLedgerDO transaction) {
 		System.out.println("Submitted Transaction Simulator XML = "+transaction.toString());
+		if(!AppConstants.useMockData){			
+			BlockChainService chainService = new BlockChainImpl();
+			chainService.insertLedger(transaction);
+		}
 	}
 	
 	public static void publishACHTransaction(TransactionLedgerDO achSettlementLedger) {
 		System.out.println("Submitted ACH Simulator XML = "+achSettlementLedger.toString());
+		if(!AppConstants.useMockData){			
+			BlockChainService chainService = new BlockChainImpl();
+			chainService.updateStatus(achSettlementLedger.getSettlementID(),achSettlementLedger.getSettlementStatus());
+		}
 	}
 
 }
