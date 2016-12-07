@@ -66,10 +66,10 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
     bytes, err := json.Marshal(ledgerHld)
 
     if err != nil { 
-    	return nil, errors.New("Error creating TRAN_Holder record") 
+    	return nil, errors.New("Error creating Ledger_Holder record") 
     }
 
-	err = stub.PutState("tranIDs", bytes)
+	err = stub.PutState("settlementIDs", bytes)
 	
     return nil, nil
 }
@@ -106,7 +106,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	if function == "get_settlementIDs"{
 		bytes, err := stub.GetState("settlementIDs")
 		if err != nil { 
-			return nil, errors.New("Unable to get tranIDs") 
+			return nil, errors.New("Unable to get settlementIDs") 
 		}
 		
 		return bytes, nil
