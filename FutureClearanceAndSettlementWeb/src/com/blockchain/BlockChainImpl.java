@@ -31,7 +31,8 @@ public class BlockChainImpl implements BlockChainService {
 	public boolean insertLedger(TransactionLedgerDO dataDO){
 		
 		String status = "";
-		if(Integer.parseInt(dataDO.getSettlementAmount()) > 10000){
+		String amount = dataDO.getSettlementAmount().replace("$", "");
+		if(Integer.parseInt(amount) > 10000){
 			status = "Pending";
 		}else{
 			status = "Settled";

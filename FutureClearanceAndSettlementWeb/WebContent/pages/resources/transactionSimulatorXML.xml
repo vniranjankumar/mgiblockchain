@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SettlementLedger>
-    <originatingBankName>MGI Business Account</originatingBankName>
-    <originatingAccountName>US Bank</originatingAccountName>
+    <originatingBankName>US Bank</originatingBankName>
+    <originatingAccountName>MGI Business Account</originatingAccountName>
     <originatingAccountNumber>7664568765</originatingAccountNumber>
-    <receiverBankName>Cub Foods Business Account</receiverBankName>
-    <receiverAccountName>Citi</receiverAccountName>
+    <receiverBankName>Citi</receiverBankName>
+    <receiverAccountName>Cub Foods Business Account</receiverAccountName>
     <receiverAccountNumber>6654534234</receiverAccountNumber>
     <settlementAmount>555$</settlementAmount>
 </SettlementLedger>

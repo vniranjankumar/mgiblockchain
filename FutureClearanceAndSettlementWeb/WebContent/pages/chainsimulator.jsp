@@ -101,7 +101,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
 		            	<div id ="viewchainform" class="form-style-5 full-row" >							
 							<s:form action="publishTransactionEvent">
 								<fieldset>
-									<legend>Transaction Simulator</legend>
+									<legend>Ledger Invoke Simulator</legend>
 									<s:textarea name="transactionXML" label="Transaction XML" cols="150" rows="15"/>
 									<s:submit value="Submit"></s:submit>							
 								</fieldset>
