@@ -162,20 +162,18 @@ public class BlockChainImpl implements BlockChainService {
 	public static void main(String[] args){
 		
 		// Demo Purpose...
-		TransactionLedgerDO data1 = new TransactionLedgerDO("100$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
-		TransactionLedgerDO data2 = new TransactionLedgerDO("100$","Settled","MGI Business Account","US Bank","7664568765","Cub Foods Business Account","Citi","6654534234");
-		TransactionLedgerDO data3 = new TransactionLedgerDO("250$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
-		TransactionLedgerDO data4 = new TransactionLedgerDO("15000$","Pending","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
-
+//		TransactionLedgerDO data1 = new TransactionLedgerDO("100$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+//		TransactionLedgerDO data2 = new TransactionLedgerDO("100$","Settled","MGI Business Account","US Bank","7664568765","Cub Foods Business Account","Citi","6654534234");
+//		TransactionLedgerDO data3 = new TransactionLedgerDO("250$","Settled","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+//		TransactionLedgerDO data4 = new TransactionLedgerDO("15000$","Pending","Walmart Business Account","BOA","5463736254","MGI Business Account","US Bank","7664568765");
+//
 		BlockChainImpl obj = new BlockChainImpl();	
-		obj.insertLedger(data1);
-		obj.insertLedger(data2);
-		obj.insertLedger(data3);
-		obj.insertLedger(data4);
+//		obj.insertLedger(data1);
+//		obj.insertLedger(data2);
+//		obj.insertLedger(data3);
+//		obj.insertLedger(data4);
+//		
 		
-		
-		ArrayList<TransactionLedgerDO> temp = obj.queryLedgers();
-		System.out.println(temp.size());
-		
+		obj.updateStatus("66730", "Settled");	
 	}
 }

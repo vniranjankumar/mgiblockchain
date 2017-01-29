@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Account Payable -->
+<SettlementLedger>
+    <originatingBankName>BOA</originatingBankName>
+    <originatingAccountName>Walmart Business Account</originatingAccountName>
+    <originatingAccountNumber>5463736254</originatingAccountNumber>
+    <receiverBankName>US Bank</receiverBankName>
+    <receiverAccountName>MGI Business Account</receiverAccountName>
+    <receiverAccountNumber>7664568765</receiverAccountNumber>
+    <settlementAmount>50$</settlementAmount>
+</SettlementLedger>
+<!-- Account Receives -->
 <SettlementLedger>
     <originatingBankName>US Bank</originatingBankName>
     <originatingAccountName>MGI Business Account</originatingAccountName>
